@@ -21,6 +21,8 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 export const setIsLoggedInAC = (value: boolean) =>
     ({type: 'login/SET-IS-LOGGED-IN', value} as const)
 
+
+//thunks
 export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsType>) => {
     dispatch(setAppStatusAC('loading'))
     authAPI.login(data)
@@ -36,6 +38,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionsTyp
             handleServerNetworkError(error, dispatch);
         })
 }
+
 
 // types
 type ActionsType = ReturnType<typeof setIsLoggedInAC> | SetAppStatusActionType | SetAppErrorActionType
