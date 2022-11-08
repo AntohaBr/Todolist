@@ -5,8 +5,11 @@ import { AppRootStateType } from '../../app/store'
 import { SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType } from '../../app/app-reducer'
 import { handleServerAppError, handleServerNetworkError } from '../../utils/error-utils'
 
+
 const initialState: TasksStateType = {}
 
+
+//reducer
 export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
@@ -39,6 +42,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
     }
 }
 
+
 // actions
 export const removeTaskAC = (taskId: string, todolistId: string) => ({type: 'REMOVE-TASK', taskId, todolistId} as const)
 export const addTaskAC = (task: TaskType) => ({type: 'ADD-TASK', task} as const)
@@ -53,6 +57,7 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) => ({
     tasks,
     todolistId
 } as const)
+
 
 // thunks
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType | SetAppStatusActionType>) => {
@@ -121,6 +126,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
                 handleServerNetworkError(error, dispatch);
             })
     }
+
 
 // types
 export type UpdateDomainTaskModelType = {

@@ -2,8 +2,11 @@ import {todolistsAPI, TodolistType} from '../../api/todolists-api'
 import {Dispatch} from 'redux'
 import {RequestStatusType, setAppStatusAC, SetAppStatusActionType} from '../../app/app-reducer'
 
+
 const initialState: Array<TodolistDomainType> = []
 
+
+//reducer
 export const todolistsReducer = (state: Array<TodolistDomainType> = initialState, action: ActionsType): Array<TodolistDomainType> => {
     switch (action.type) {
         case 'REMOVE-TODOLIST':
@@ -40,6 +43,7 @@ export const changeTodolistFilterAC = (id: string, filter: FilterValuesType) => 
 export const changeTodolistEntityStatusAC = (id: string, status: RequestStatusType) => ({
     type: 'CHANGE-TODOLIST-ENTITY-STATUS', id, status } as const)
 export const setTodolistsAC = (todolists: Array<TodolistType>) => ({type: 'SET-TODOLISTS', todolists} as const)
+
 
 // thunks
 export const fetchTodolistsTC = () => {
@@ -84,6 +88,7 @@ export const changeTodolistTitleTC = (id: string, title: string) => {
             })
     }
 }
+
 
 // types
 export type AddTodolistActionType = ReturnType<typeof addTodolistAC>;
