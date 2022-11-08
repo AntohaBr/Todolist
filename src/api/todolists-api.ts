@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
+import {stringify} from "querystring";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
@@ -36,6 +37,14 @@ export const todolistsAPI = {
     }
 }
 
+export const authAPI = {
+    login(data: LoginParamsType) {
+        return instance.post<LoginParamsType, AxiosResponse<ResponseType<{ userId: number }>>>(`todo-lists//auth/login`, data);
+    }
+}
+
+
+
 // types
 export type TodolistType = {
     id: string
@@ -66,6 +75,15 @@ export enum TaskPriorities {
     Later = 4
 }
 
+export enum StatusCode {
+    Ok = 0,
+    ERROR = 1,
+    CAPTCHA = 10,
+    HI = 2,
+    Urgently = 3,
+    Later = 4
+}
+
 export type TaskType = {
     description: string
     title: string
@@ -90,4 +108,10 @@ type GetTasksResponse = {
     error: string | null
     totalCount: number
     items: TaskType[]
+}
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe?: boolean
+    captcha?: string
 }
