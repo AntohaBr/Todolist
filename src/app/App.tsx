@@ -30,7 +30,9 @@ function App({demo = false}: PropsType) {
     const dispatch = useDispatch<ThunkDispatchType>()
 
     useEffect(() => {
-        dispatch(initializeAppTC())
+        if (! demo) {
+            dispatch(initializeAppTC())
+        }
     }, [])
 
     const logoutHandler = useCallback(() => {
@@ -45,7 +47,6 @@ function App({demo = false}: PropsType) {
     }
 
     return (
-        <BrowserRouter>
             <div className="App">
                 <ErrorSnackbar/>
                 <AppBar position="static">
@@ -65,7 +66,6 @@ function App({demo = false}: PropsType) {
                     <Route path={'/login'}  element={<Login/>}/>
                 </Routes>
             </div>
-        </BrowserRouter>
     )
 }
 
