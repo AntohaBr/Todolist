@@ -5,14 +5,10 @@ import {handleAsyncServerAppError, handleAsyncServerNetworkError} from '../../ut
 import {asyncActions as asyncTodolistsActions} from './todolists-reducer'
 import {AppRootStateType, ThunkError} from '../../utils/types'
 import {TaskPriorities, TaskStatuses, TaskType, UpdateTaskModelType} from '../../api/types'
-import {AxiosError} from 'axios';
-
 
 const initialState: TasksStateType = {}
 
-
-export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: string }, string, ThunkError>
-('tasks/fetchTasks', async (todolistId, thunkAPI) => {
+export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: string }, string, ThunkError>('tasks/fetchTasks', async (todolistId, thunkAPI) => {
     thunkAPI.dispatch(appActions.setAppStatus({status: 'loading'}))
     try {
         const res = await todolistsAPI.getTasks(todolistId)
@@ -20,17 +16,14 @@ export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: stri
         thunkAPI.dispatch(appActions.setAppStatus({status: 'succeeded'}))
         return {tasks, todolistId}
     } catch (error) {
-        const err = error as AxiosError
-        return handleAsyncServerNetworkError(err, thunkAPI)
+        return handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
-
-export const removeTask = createAsyncThunk<{ taskId: string, todolistId: string }, { taskId: string, todolistId: string },
-    ThunkError>('tasks/removeTask', async (param, thunkAPI) => {
-    await todolistsAPI.deleteTask(param.todolistId, param.taskId)
-    return {taskId: param.taskId, todolistId: param.todolistId}
-})
-
+export const removeTask = createAsyncThunk<{ taskId: string, todolistId: string }, { taskId: string, todolistId: string }, ThunkError>('tasks/removeTask',
+    async (param, thunkAPI) => {
+        const res = await todolistsAPI.deleteTask(param.todolistId, param.taskId)
+        return {taskId: param.taskId, todolistId: param.todolistId}
+    })
 export const addTask = createAsyncThunk<TaskType, { title: string, todolistId: string }, ThunkError>('tasks/addTask',
     async (param, thunkAPI) => {
         thunkAPI.dispatch(appActions.setAppStatus({status: 'loading'}))
@@ -43,14 +36,12 @@ export const addTask = createAsyncThunk<TaskType, { title: string, todolistId: s
                 handleAsyncServerAppError(res.data, thunkAPI, false)
                 return thunkAPI.rejectWithValue({errors: res.data.messages, fieldsErrors: res.data.fieldsErrors})
             }
-        } catch (error) {
-            const err = error as AxiosError
+        } catch (err) {
             return handleAsyncServerNetworkError(err, thunkAPI, false)
         }
     })
-
-export const updateTask = createAsyncThunk('tasks/updateTask', async (
-    param: { taskId: string, model: UpdateDomainTaskModelType, todolistId: string }, thunkAPI) => {
+export const updateTask = createAsyncThunk('tasks/updateTask', async (param: { taskId: string, model: UpdateDomainTaskModelType, todolistId: string },
+                                                                      thunkAPI) => {
     const state = thunkAPI.getState() as AppRootStateType
 
     const task = state.tasks[param.todolistId].find(t => t.id === param.taskId)
@@ -76,11 +67,9 @@ export const updateTask = createAsyncThunk('tasks/updateTask', async (
             return handleAsyncServerAppError(res.data, thunkAPI)
         }
     } catch (error) {
-        const err = error as AxiosError
-        return handleAsyncServerNetworkError(err, thunkAPI)
+        return handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
-
 
 export const asyncActions = {
     fetchTasks,
@@ -88,7 +77,6 @@ export const asyncActions = {
     addTask,
     updateTask
 }
-
 
 export const slice = createSlice({
     name: 'tasks',
@@ -130,7 +118,6 @@ export const slice = createSlice({
     }
 })
 
-
 // types
 export type UpdateDomainTaskModelType = {
     title?: string
@@ -140,7 +127,6 @@ export type UpdateDomainTaskModelType = {
     startDate?: string
     deadline?: string
 }
-
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }

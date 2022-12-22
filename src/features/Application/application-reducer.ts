@@ -1,8 +1,7 @@
 import {authAPI} from '../../api/todolists-api'
 import {authActions} from '../Auth'
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {appActions} from '../CommonActions/App'
-
 
 const initializeApp = createAsyncThunk('application/initializeApp', async (param, {dispatch}) => {
     const res = await authAPI.me()
@@ -13,11 +12,9 @@ const initializeApp = createAsyncThunk('application/initializeApp', async (param
     }
 })
 
-
 export const asyncActions = {
     initializeApp
 }
-
 
 export const slice = createSlice({
     name: 'app',
@@ -41,6 +38,12 @@ export const slice = createSlice({
     }
 })
 
-//types
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type InitialStateType = { status: RequestStatusType, error: string | null, isInitialized: boolean }
+export type InitialStateType = {
+    // происходит ли сейчас взаимодействие с сервером
+    status: RequestStatusType
+    // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
+    error: string | null
+    // true когда приложение проинициализировалось (проверили юзера, настройки получили и т.д.)
+    isInitialized: boolean
+}

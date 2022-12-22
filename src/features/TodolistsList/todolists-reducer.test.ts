@@ -10,7 +10,6 @@ import {RequestStatusType} from '../Application/application-reducer'
 import {todolistsActions} from './'
 import {TodolistType} from '../../api/types'
 
-
 const todolistsReducer = slice.reducer
 const {addTodolistTC, changeTodolistTitleTC, fetchTodolistsTC, removeTodolistTC} = todolistsActions
 
@@ -54,7 +53,7 @@ test('correct todolist should change its name', () => {
     let newTodolistTitle = 'New Todolist'
 
     let payload = {id: todolistId2, title: newTodolistTitle}
-    const action = changeTodolistTitleTC.fulfilled(payload, "requestId", payload)
+    const action = changeTodolistTitleTC.fulfilled(payload,"requestId", payload)
 
     const endState = todolistsReducer(startState, action)
 

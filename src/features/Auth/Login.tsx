@@ -6,15 +6,14 @@ import {login} from './auth-reducer'
 import {Redirect} from 'react-router-dom'
 import {selectIsLoggedIn} from './selectors'
 import {authActions} from './index'
-import {useAppDispatch} from '../../utils/redux-utils'
-
+import {Action} from 'redux'
+import {useActions, useAppDispatch} from '../../utils/redux-utils'
 
 type FormValuesType = {
     email: string
     password: string
     rememberMe: boolean
 }
-
 
 export const Login = () => {
     const dispatch = useAppDispatch()
@@ -43,7 +42,7 @@ export const Login = () => {
         onSubmit: async (values: FormValuesType, formikHelpers: FormikHelpers<FormValuesType>) => {
             const resultAction = await dispatch(authActions.login(values));
 
-            if (login.rejected.match(resultAction)) {
+            if  (login.rejected.match(resultAction)) {
                 if (resultAction.payload?.fieldsErrors?.length) {
                     const error = resultAction.payload?.fieldsErrors[0];
                     formikHelpers.setFieldError(error.field, error.error);
@@ -53,17 +52,18 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Redirect to={'/'}/>
+        return <Redirect to={"/"} />
     }
 
-    return <Grid container justify='center'>
+
+    return <Grid container justify="center">
         <Grid item xs={4}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormLabel>
                         <p>
                             To log in get registered <a href={'https://social-network.samuraijs.com/'}
-                                                        target={'_blank'} rel="noopener noreferrer">here</a>
+                                                        target={'_blank'}>here</a>
                         </p>
                         <p>
                             or use common test account credentials:
@@ -76,22 +76,22 @@ export const Login = () => {
                     </FormLabel>
                     <FormGroup>
                         <TextField
-                            label='Email'
-                            margin='normal'
-                            {...formik.getFieldProps('email')}
+                            label="Email"
+                            margin="normal"
+                            {...formik.getFieldProps("email")}
                         />
                         {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                         <TextField
-                            type='password'
-                            label='Password'
-                            margin='normal'
-                            {...formik.getFieldProps('password')}
+                            type="password"
+                            label="Password"
+                            margin="normal"
+                            {...formik.getFieldProps("password")}
                         />
                         {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                         <FormControlLabel
                             label={'Remember me'}
                             control={<Checkbox
-                                {...formik.getFieldProps('rememberMe')}
+                                {...formik.getFieldProps("rememberMe")}
                                 checked={formik.values.rememberMe}
                             />}
                         />

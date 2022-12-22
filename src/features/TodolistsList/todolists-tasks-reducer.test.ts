@@ -3,7 +3,6 @@ import {slice as tasksSlice, TasksStateType} from './tasks-reducer'
 import {todolistsActions} from './'
 import {TodolistType} from '../../api/types'
 
-
 const todolistsReducer = slice.reducer
 const tasksReducer = tasksSlice.reducer
 

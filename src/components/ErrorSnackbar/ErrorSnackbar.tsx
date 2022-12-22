@@ -6,12 +6,12 @@ import {appActions} from '../../features/CommonActions/App'
 import {AppRootStateType} from '../../utils/types'
 import {useActions} from '../../utils/redux-utils'
 
-
-const Alert = (props: AlertProps) => {
+function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-export const ErrorSnackbar = () => {
+export function ErrorSnackbar() {
+    //const [open, setOpen] = React.useState(true)
     const error = useSelector<AppRootStateType, string | null>(state => state.app.error);
     const {setAppError} = useActions(appActions)
 
@@ -21,6 +21,7 @@ export const ErrorSnackbar = () => {
         }
         setAppError({error: null});
     }
+
 
     const isOpen = error !== null;
 

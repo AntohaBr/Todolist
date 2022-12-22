@@ -9,13 +9,11 @@ import {tasksActions, todolistsActions} from '../index'
 import {TaskStatuses, TaskType} from '../../../api/types'
 import {useActions, useAppDispatch} from '../../../utils/redux-utils'
 
-
 type PropsType = {
     todolist: TodolistDomainType
     tasks: Array<TaskType>
     demo?: boolean
 }
-
 
 export const Todolist = React.memo(function ({demo = false, ...props}: PropsType) {
     const {fetchTasks} = useActions(tasksActions)
@@ -27,8 +25,10 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         if (demo) {
             return
         }
-        fetchTasks(props.todolist.id)
-    }, [demo,fetchTasks,props.todolist.id])
+        if (!props.tasks.length) {
+            fetchTasks(props.todolist.id)
+        }
+    }, [])
 
     const addTaskCallback = useCallback(async (title: string, helper: AddItemFormSubmitHelperType) => {
 
@@ -46,19 +46,19 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
             helper.setTitle('')
         }
 
-    }, [props.todolist.id,dispatch])
+    }, [props.todolist.id])
 
     const removeTodolist = () => {
         removeTodolistTC(props.todolist.id)
     }
     const changeTodolistTitle = useCallback((title: string) => {
         changeTodolistTitleTC({id: props.todolist.id, title: title})
-    }, [changeTodolistTitleTC, props.todolist.id])
+    }, [props.todolist.id])
 
     const onFilterButtonClickHandler = useCallback((filter: FilterValuesType) => changeTodolistFilter({
         filter: filter,
         id: props.todolist.id
-    }), [changeTodolistFilter, props.todolist.id])
+    }), [props.todolist.id])
 
     let tasksForTodolist = props.tasks
 
@@ -82,7 +82,7 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         <IconButton
             size={'small'}
             onClick={removeTodolist} disabled={props.todolist.entityStatus === 'loading'}
-            style={{position: 'absolute', right: '5px', top: '5px'}}
+                    style={{position: 'absolute', right: '5px', top: '5px'}}
         >
             <Delete fontSize={'small'}/>
         </IconButton>

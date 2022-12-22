@@ -1,9 +1,7 @@
 import {slice, InitialStateType} from './application-reducer'
 import {appActions} from '../CommonActions/App'
-
 const {reducer: appReducer} = slice
 const {setAppError, setAppStatus} = appActions
-
 
 let startState: InitialStateType;
 
