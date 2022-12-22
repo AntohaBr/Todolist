@@ -7,7 +7,8 @@ import {appActions} from '../CommonActions/App'
 const {setAppStatus} = appActions
 
 export const login = createAsyncThunk<undefined, LoginParamsType,
-    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<FieldErrorType> } }>('auth/login', async (param, thunkAPI) => {
+    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<FieldErrorType> } }>('auth/login',
+    async (param, thunkAPI) => {
     thunkAPI.dispatch(setAppStatus({status: 'loading'}))
     try {
         const res = await authAPI.login(param)
@@ -21,6 +22,7 @@ export const login = createAsyncThunk<undefined, LoginParamsType,
         return handleAsyncServerNetworkError(error, thunkAPI)
     }
 })
+
 export const logout = createAsyncThunk('auth/logout', async (param, thunkAPI) => {
     thunkAPI.dispatch(setAppStatus({status: 'loading'}))
     try {

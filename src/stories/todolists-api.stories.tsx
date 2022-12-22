@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+
 import {todolistsAPI} from '../api/todolists-api'
 
 export default {
@@ -9,7 +9,7 @@ export default {
 const settings = {
     withCredentials: true,
     headers: {
-        'API-KEY': '1cdd9f77-c60e-4af5-b194-659e4ebd5d41'
+        'API-KEY': 'f1636098-c65e-4218-94e5-e10509868ae3'
     }
 }
 

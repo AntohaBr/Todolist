@@ -6,8 +6,7 @@ import {login} from './auth-reducer'
 import {Redirect} from 'react-router-dom'
 import {selectIsLoggedIn} from './selectors'
 import {authActions} from './index'
-import {Action} from 'redux'
-import {useActions, useAppDispatch} from '../../utils/redux-utils'
+import {useAppDispatch} from '../../utils/redux-utils'
 
 type FormValuesType = {
     email: string
@@ -55,8 +54,7 @@ export const Login = () => {
         return <Redirect to={"/"} />
     }
 
-
-    return <Grid container justify="center">
+    return <Grid container justify='center'>
         <Grid item xs={4}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
@@ -76,22 +74,22 @@ export const Login = () => {
                     </FormLabel>
                     <FormGroup>
                         <TextField
-                            label="Email"
-                            margin="normal"
-                            {...formik.getFieldProps("email")}
+                            label='Email'
+                            margin='normal'
+                            {...formik.getFieldProps('email')}
                         />
                         {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                         <TextField
-                            type="password"
-                            label="Password"
-                            margin="normal"
-                            {...formik.getFieldProps("password")}
+                            type='password'
+                            label='Password'
+                            margin='normal'
+                            {...formik.getFieldProps('password')}
                         />
                         {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                         <FormControlLabel
                             label={'Remember me'}
                             control={<Checkbox
-                                {...formik.getFieldProps("rememberMe")}
+                                {...formik.getFieldProps('rememberMe')}
                                 checked={formik.values.rememberMe}
                             />}
                         />

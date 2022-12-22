@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect} from 'react'
-import './App.css'
 import {
     AppBar,
     Button,
@@ -13,7 +12,7 @@ import {
 import {Menu} from '@material-ui/icons'
 import {TodolistsList} from '../features/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {appActions} from '../features/Application'
 import {Route} from 'react-router-dom'
 import {authActions, Login} from '../features/Auth'
@@ -46,17 +45,17 @@ function App(props: PropsType) {
         </div>
     }
     return (
-            <div className="App">
+            <div>
                 <ErrorSnackbar/>
-                <AppBar position="static">
+                <AppBar position='static'>
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
+                        <IconButton edge='start' color='inherit' aria-label='menu'>
                             <Menu/>
                         </IconButton>
-                        <Typography variant="h6">
+                        <Typography variant='h6'>
                             News
                         </Typography>
-                        {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
+                        {isLoggedIn && <Button color='inherit' onClick={logoutHandler}>Log out</Button>}
                     </Toolbar>
                     {status === 'loading' && <LinearProgress/>}
                 </AppBar>
