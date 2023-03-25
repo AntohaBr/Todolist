@@ -1,6 +1,6 @@
 import React from 'react'
-import App from './App'
-import {BrowserRouterDecorator, ReduxStoreProviderDecorator} from '../stories/decorators/ReduxStoreProviderDecorator'
+import {BrowserRouterDecorator, ReduxStoreProviderDecorator} from 'stories/decorators/ReduxStoreProviderDecorator'
+import {App} from 'app/App'
 
 export default {
     title: 'Application Stories',

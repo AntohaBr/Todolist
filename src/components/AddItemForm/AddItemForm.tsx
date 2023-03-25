@@ -1,6 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import {IconButton, TextField} from '@material-ui/core'
-import {AddBox} from '@material-ui/icons'
+import {IconButton, TextField, AddBox} from 'collections-mui'
 
 export type AddItemFormSubmitHelperType = { setError: (error: string) => void, setTitle: (title: string) => void}
 type AddItemFormPropsType = {

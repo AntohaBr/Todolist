@@ -1,13 +1,11 @@
 import React, {useCallback, useEffect} from 'react'
-import {AddItemForm, AddItemFormSubmitHelperType} from '../../../components/AddItemForm/AddItemForm'
-import {EditableSpan} from '../../../components/EditableSpan/EditableSpan'
-import {Button, IconButton, Paper, PropTypes} from '@material-ui/core'
-import {Delete} from '@material-ui/icons'
-import {Task} from './Task/Task'
+import {AddItemForm, AddItemFormSubmitHelperType, EditableSpan} from 'components'
+import {PropTypes} from '@material-ui/core'
+import {Delete, IconButton, Button, Paper} from 'collections-mui'
 import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
-import {tasksActions, todolistsActions} from '../index'
-import {TaskStatuses, TaskType} from '../../../api/types'
-import {useActions, useAppDispatch} from '../../../utils/redux-utils'
+import {Task, tasksActions, todolistsActions} from '../index'
+import {TaskStatuses, TaskType} from 'api/types'
+import {useActions, useAppDispatch} from 'utils'
 
 type PropsType = {
     todolist: TodolistDomainType
