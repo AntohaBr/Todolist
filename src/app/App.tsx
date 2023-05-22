@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css'
-import {AppBar, Button, CircularProgress, Container, IconButton, LinearProgress, Toolbar,
+import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar,
     Typography
 } from '@material-ui/core'
-import {Menu} from '@material-ui/icons'
 import {TodolistsList} from 'features/TodolistsList'
 import {ErrorSnackbar} from 'components/ErrorSnackbar/ErrorSnackbar'
 import {useSelector} from 'react-redux'
@@ -18,7 +17,7 @@ type PropsType = {
     demo?: boolean
 }
 
-function App({demo = false}: PropsType) {
+export const App = ({demo = false}: PropsType) => {
     const status = useSelector(selectStatus)
     const isInitialized = useSelector(selectIsInitialized)
     const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn)
@@ -48,11 +47,8 @@ function App({demo = false}: PropsType) {
                 <ErrorSnackbar/>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" aria-label="menu">
-                            <Menu/>
-                        </IconButton>
                         <Typography variant="h6">
-                            News
+                            Todolist
                         </Typography>
                         {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
                     </Toolbar>
@@ -66,4 +62,3 @@ function App({demo = false}: PropsType) {
     )
 }
 
-export default App
