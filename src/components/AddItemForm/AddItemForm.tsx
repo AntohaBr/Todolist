@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import {IconButton, TextField, AddBox} from 'collections-mui'
+import {IconButton, TextField} from '@material-ui/core'
+import {AddBox} from '@material-ui/icons'
 
 export type AddItemFormSubmitHelperType = { setError: (error: string) => void, setTitle: (title: string) => void}
 type AddItemFormPropsType = {
@@ -33,16 +34,16 @@ export const AddItemForm = React.memo(function ({addItem, disabled = false}: Add
     }
 
     return <div>
-        <TextField variant='outlined'
+        <TextField variant="outlined"
                    disabled={disabled}
                    error={!!error}
                    value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
-                   label='Title'
+                   label="Title"
                    helperText={error}
         />
-        <IconButton color='primary' onClick={addItemHandler} disabled={disabled} style={{marginLeft: '5px'}}>
+        <IconButton color="primary" onClick={addItemHandler} disabled={disabled} style={{marginLeft: '5px'}}>
             <AddBox/>
         </IconButton>
     </div>

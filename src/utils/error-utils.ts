@@ -1,9 +1,7 @@
-import {appActions} from 'features/CommonActions/App'
 import {AxiosError} from 'axios'
 import {ResponseType} from 'api/types'
+import {appActions} from 'features/CommonActions/App'
 
-// original type:
-// BaseThunkAPI<S, E, D extends Dispatch = Dispatch, RejectedValue = undefined>
 type ThunkAPIType = {
     dispatch: (action: any) => any
     rejectWithValue: Function

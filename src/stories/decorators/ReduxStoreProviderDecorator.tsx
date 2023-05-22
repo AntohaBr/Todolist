@@ -1,16 +1,16 @@
 import React from 'react'
 import {Provider} from 'react-redux'
 import {combineReducers} from 'redux'
-import {tasksReducer} from '../../features/TodolistsList'
-import {todolistsReducer} from '../../features/TodolistsList'
+import {tasksReducer} from 'features/TodolistsList'
+import {todolistsReducer} from 'features/TodolistsList'
 import {v1} from 'uuid'
-import {appReducer} from '../../features/Application'
+import {appReducer} from 'features/Application'
 import thunkMiddleware from 'redux-thunk'
-import {authReducer} from '../../features/Auth'
+import {authReducer} from 'features/Auth'
 import {configureStore} from '@reduxjs/toolkit'
 import {HashRouter} from 'react-router-dom'
-import {AppRootStateType, RootReducerType} from '../../utils/types'
-import {TaskPriorities, TaskStatuses} from '../../api/types'
+import {AppRootStateType, RootReducerType} from 'utils/types'
+import {TaskPriorities, TaskStatuses} from 'api/types'
 
 const rootReducer: RootReducerType = combineReducers({
     tasks: tasksReducer,
@@ -46,13 +46,13 @@ const initialGlobalState: AppRootStateType = {
     auth: {
         isLoggedIn: true
     }
-};
+}
 
 export const storyBookStore = configureStore({
     reducer: rootReducer,
     preloadedState: initialGlobalState,
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware)
-});
+})
 
 export const ReduxStoreProviderDecorator = (storyFn: any) => (
     <Provider

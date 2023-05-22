@@ -1,9 +1,9 @@
 import {todolistsAPI} from 'api/todolists-api'
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {appActions} from '../CommonActions/App'
-import {handleAsyncServerAppError, handleAsyncServerNetworkError,
-    AppRootStateType, ThunkError} from 'utils'
+import {handleAsyncServerAppError, handleAsyncServerNetworkError} from 'utils/error-utils'
 import {asyncActions as asyncTodolistsActions} from './todolists-reducer'
+import {AppRootStateType, ThunkError} from 'utils/types'
 import {TaskPriorities, TaskStatuses, TaskType, UpdateTaskModelType} from 'api/types'
 
 const initialState: TasksStateType = {}
@@ -22,8 +22,7 @@ export const fetchTasks = createAsyncThunk<{ tasks: TaskType[], todolistId: stri
 })
 
 export const removeTask = createAsyncThunk<{ taskId: string, todolistId: string }, { taskId: string, todolistId: string },
-    ThunkError>('tasks/removeTask',
-    async (param, thunkAPI) => {
+    ThunkError>('tasks/removeTask', async (param, thunkAPI) => {
         const res = await todolistsAPI.deleteTask(param.todolistId, param.taskId)
         return {taskId: param.taskId, todolistId: param.todolistId}
     })
@@ -48,34 +47,34 @@ export const addTask = createAsyncThunk<TaskType, { title: string, todolistId: s
 export const updateTask = createAsyncThunk('tasks/updateTask',
     async (param: { taskId: string, model: UpdateDomainTaskModelType, todolistId: string },
            thunkAPI) => {
-    const state = thunkAPI.getState() as AppRootStateType
+        const state = thunkAPI.getState() as AppRootStateType
 
-    const task = state.tasks[param.todolistId].find(t => t.id === param.taskId)
-    if (!task) {
-        return thunkAPI.rejectWithValue('task not found in the state')
-    }
-
-    const apiModel: UpdateTaskModelType = {
-        deadline: task.deadline,
-        description: task.description,
-        priority: task.priority,
-        startDate: task.startDate,
-        title: task.title,
-        status: task.status,
-        ...param.model
-    }
-
-    const res = await todolistsAPI.updateTask(param.todolistId, param.taskId, apiModel)
-    try {
-        if (res.data.resultCode === 0) {
-            return param
-        } else {
-            return handleAsyncServerAppError(res.data, thunkAPI)
+        const task = state.tasks[param.todolistId].find(t => t.id === param.taskId)
+        if (!task) {
+            return thunkAPI.rejectWithValue('task not found in the state')
         }
-    } catch (error) {
-        return handleAsyncServerNetworkError(error, thunkAPI)
-    }
-})
+
+        const apiModel: UpdateTaskModelType = {
+            deadline: task.deadline,
+            description: task.description,
+            priority: task.priority,
+            startDate: task.startDate,
+            title: task.title,
+            status: task.status,
+            ...param.model
+        }
+
+        const res = await todolistsAPI.updateTask(param.todolistId, param.taskId, apiModel)
+        try {
+            if (res.data.resultCode === 0) {
+                return param
+            } else {
+                return handleAsyncServerAppError(res.data, thunkAPI)
+            }
+        } catch (error) {
+            return handleAsyncServerNetworkError(error, thunkAPI)
+        }
+    })
 
 export const asyncActions = {
     fetchTasks,

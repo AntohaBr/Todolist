@@ -1,11 +1,13 @@
 import React, {useCallback, useEffect} from 'react'
-import {AddItemForm, AddItemFormSubmitHelperType, EditableSpan} from 'components'
-import {PropTypes} from '@material-ui/core'
-import {Delete, IconButton, Button, Paper} from 'collections-mui'
+import {AddItemForm, AddItemFormSubmitHelperType} from 'components/AddItemForm/AddItemForm'
+import {EditableSpan} from 'components/EditableSpan/EditableSpan'
+import {Button, IconButton, Paper, PropTypes} from '@material-ui/core'
+import {Delete} from '@material-ui/icons'
+import {Task} from './Task/Task'
 import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
-import {Task, tasksActions, todolistsActions} from '../index'
+import {tasksActions, todolistsActions} from '../index'
 import {TaskStatuses, TaskType} from 'api/types'
-import {useActions, useAppDispatch} from 'utils'
+import {useActions, useAppDispatch} from 'utils/redux-utils'
 
 type PropsType = {
     todolist: TodolistDomainType
@@ -23,9 +25,7 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         if (demo) {
             return
         }
-        if (!props.tasks.length) {
-            fetchTasks(props.todolist.id)
-        }
+        fetchTasks(props.todolist.id)
     }, [])
 
     const addTaskCallback = useCallback(async (title: string, helper: AddItemFormSubmitHelperType) => {
