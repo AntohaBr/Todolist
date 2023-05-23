@@ -1,8 +1,6 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css'
-import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar,
-    Typography
-} from '@material-ui/core'
+import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography} from '@material-ui/core'
 import {TodolistsList} from 'features/TodolistsList'
 import {ErrorSnackbar} from 'components/ErrorSnackbar/ErrorSnackbar'
 import {useSelector} from 'react-redux'
