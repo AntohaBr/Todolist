@@ -41,14 +41,14 @@ export const App = ({demo = false}: PropsType) => {
     }
 
     return (
-            <div className="App">
+            <div className='App'>
                 <ErrorSnackbar/>
-                <AppBar position="static">
-                    <Toolbar>
+                <AppBar position='static'>
+                    <Toolbar className='toolbar'>
                         <Typography variant="h6">
                             Todolist
                         </Typography>
-                        {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
+                        {isLoggedIn && <Button color='inherit' onClick={logoutHandler}>Log out</Button>}
                     </Toolbar>
                     {status === 'loading' && <LinearProgress/>}
                 </AppBar>

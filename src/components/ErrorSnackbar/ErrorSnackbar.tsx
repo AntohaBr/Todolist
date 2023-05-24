@@ -10,8 +10,9 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-export function ErrorSnackbar() {
+export const ErrorSnackbar = () => {
     const error = useSelector<AppRootStateType, string | null>(state => state.app.error)
+
     const {setAppError} = useActions(appActions)
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -20,7 +21,6 @@ export function ErrorSnackbar() {
         }
         setAppError({error: null})
     }
-
 
     const isOpen = error !== null
 

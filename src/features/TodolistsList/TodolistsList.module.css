@@ -1,0 +1,29 @@
+.addTodolistContainer {
+    margin: 30px auto;
+}
+
+.todolistsContainer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 597px) {
+    .todolistsContainer {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+.todolist {
+    padding: 0 10px;
+    width: 300px;
+}
+
+@media only screen and (max-width: 597px) {
+    .todolist {
+        padding: 10px 0;
+    }
+}

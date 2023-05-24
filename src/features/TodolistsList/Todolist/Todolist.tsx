@@ -8,6 +8,7 @@ import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
 import {tasksActions, todolistsActions} from '../index'
 import {TaskStatuses, TaskType} from 'api/types'
 import {useActions, useAppDispatch} from 'utils/redux-utils'
+import s from './Todolist.module.css'
 
 type PropsType = {
     todolist: TodolistDomainType
@@ -80,11 +81,11 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         <IconButton
             size={'small'}
             onClick={removeTodolist} disabled={props.todolist.entityStatus === 'loading'}
-                    style={{position: 'absolute', right: '5px', top: '5px'}}
+                    style={{position: 'absolute', right: '5px', top: '30px'}}
         >
             <Delete fontSize={'small'}/>
         </IconButton>
-        <h3>
+        <h3 className={s.todolistTitle}>
             <EditableSpan value={props.todolist.title} onChange={changeTodolistTitle}/>
         </h3>
         <AddItemForm addItem={addTaskCallback} disabled={props.todolist.entityStatus === 'loading'}/>

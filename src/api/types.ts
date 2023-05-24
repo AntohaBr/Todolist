@@ -4,14 +4,16 @@ export type LoginParamsType = {
     rememberMe: boolean
     captcha?: string
 }
-// types
+
 export type TodolistType = {
     id: string
     title: string
     addedDate: string
     order: number
 }
+
 export type FieldErrorType = { field: string; error: string }
+
 export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
@@ -46,6 +48,7 @@ export type TaskType = {
     order: number
     addedDate: string
 }
+
 export type UpdateTaskModelType = {
     title: string
     description: string
@@ -54,6 +57,7 @@ export type UpdateTaskModelType = {
     startDate: string
     deadline: string
 }
+
 export type GetTasksResponse = {
     error: string | null
     totalCount: number

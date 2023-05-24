@@ -10,6 +10,7 @@ import {selectIsLoggedIn} from '../Auth/selectors'
 import {todolistsActions} from './index'
 import {AppRootStateType} from 'utils/types'
 import {useActions, useAppDispatch} from 'utils/redux-utils'
+import s from './TodolistsList.module.css'
 
 type PropsType = {
     demo?: boolean
@@ -54,25 +55,25 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     }
 
     return <>
-        <Grid container style={{padding: '20px'}}>
+        <div className={s.addTodolistContainer}>
             <AddItemForm addItem={addTodolistCallback}/>
-        </Grid>
-        <Grid container spacing={3} style={{flexWrap: 'nowrap', overflowX: 'scroll'}}>
+        </div>
+        <div className={s.todolistsContainer}>
             {
                 todolists.map(tl => {
                     let allTodolistTasks = tasks[tl.id]
 
-                    return <Grid item key={tl.id}>
-                        <div style={{width: '300px'}}>
+                    return <div key={tl.id}>
+                        <div className={s.todolist}>
                             <Todolist
                                 todolist={tl}
                                 tasks={allTodolistTasks}
                                 demo={demo}
                             />
                         </div>
-                    </Grid>
+                    </div>
                 })
             }
-        </Grid>
+        </div>
     </>
 }
