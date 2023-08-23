@@ -69,6 +69,7 @@
     "@types/storybook-react-router": "^1.0.1",
     "jest-image-snapshot": "^4.0.2",
     "jest-puppeteer": "^4.4.0",
+    "prettier": "3.0.2",
     "puppeteer": "^5.1.0",
     "start-server-and-test": "^1.11.2",
     "storybook-react-router": "^1.0.8"

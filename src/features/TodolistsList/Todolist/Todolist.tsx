@@ -17,6 +17,7 @@ type PropsType = {
 }
 
 export const Todolist = React.memo(function ({demo = false, ...props}: PropsType) {
+
     const {fetchTasks} = useActions(tasksActions)
     const {changeTodolistFilter, removeTodolistTC, changeTodolistTitleTC} = useActions(todolistsActions)
 
@@ -81,7 +82,7 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
         <IconButton
             size={'small'}
             onClick={removeTodolist} disabled={props.todolist.entityStatus === 'loading'}
-                    style={{position: 'absolute', right: '5px', top: '30px'}}
+            style={{position: 'absolute', right: '5px', top: '30px'}}
         >
             <Delete fontSize={'small'}/>
         </IconButton>
