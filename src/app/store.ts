@@ -1,22 +1,16 @@
-import {combineReducers} from 'redux'
-import thunkMiddleware from 'redux-thunk'
 import {appReducer} from 'features/Application'
-import {authReducer} from 'features/Auth'
 import {tasksReducer, todolistsReducer} from 'features/TodolistsList'
 import {configureStore} from '@reduxjs/toolkit'
-
-export const rootReducer = combineReducers({
-    app: appReducer,
-    auth: authReducer,
-    todolists: todolistsReducer,
-    tasks: tasksReducer
-})
+import {authReducer} from 'features/Auth'
 
 export const store = configureStore({
-    reducer: rootReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware)
+    reducer: {
+        app: appReducer,
+        auth: authReducer,
+        todolists: todolistsReducer,
+        tasks: tasksReducer
+    }
 })
 
 // @ts-ignore
 window.store = store
-

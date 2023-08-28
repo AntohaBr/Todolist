@@ -1,4 +1,4 @@
-import * as appSelectors from './selectors'
+import * as appSelectors from 'features/Application/app.selectors'
 import {RequestStatusType as T1, slice} from './application-reducer'
 import {asyncActions} from './application-reducer'
 

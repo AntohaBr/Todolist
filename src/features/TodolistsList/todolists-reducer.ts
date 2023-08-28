@@ -22,12 +22,9 @@ const fetchTodolistsTC = createAsyncThunk<{ todolists: TodolistType[] }, undefin
 
 const removeTodolistTC = createAsyncThunk<{ id: string }, string, ThunkError>('todolists/removeTodolist',
     async (todolistId, {dispatch}) => {
-    //изменим глобальный статус приложения, чтобы вверху полоса побежала
     dispatch(setAppStatus({status: 'loading'}))
-    //изменим статус конкретного тудулиста, чтобы он мог задизеблить что надо
     dispatch(changeTodolistEntityStatus({id: todolistId, status: 'loading'}))
     await todolistsAPI.deleteTodolist(todolistId)
-    //скажем глобально приложению, что асинхронная операция завершена
     dispatch(setAppStatus({status: 'succeeded'}))
     return {id: todolistId}
 })
@@ -72,7 +69,7 @@ export const asyncActions = {
 
 export const slice = createSlice({
     name: 'todolists',
-    initialState: [] as Array<TodolistDomainType>,
+    initialState: [] as TodolistDomainType[],
     reducers: {
         changeTodolistFilter(state, action: PayloadAction<{ id: string, filter: FilterValuesType }>) {
             const index = state.findIndex(tl => tl.id === action.payload.id)
@@ -106,7 +103,7 @@ export const slice = createSlice({
 
 export const {changeTodolistFilter, changeTodolistEntityStatus} = slice.actions
 
-export type FilterValuesType = 'all' | 'active' | 'completed';
+export type FilterValuesType = 'all' | 'active' | 'completed'
 export type TodolistDomainType = TodolistType & {
     filter: FilterValuesType
     entityStatus: RequestStatusType

@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 import {appActions} from 'features/Application'
 import {Route} from 'react-router-dom'
 import {authActions, Login} from 'features/Auth'
-import {selectIsInitialized, selectStatus} from 'features/Application/selectors'
+import {selectIsInitialized, selectStatus} from 'features/Application/app.selectors'
 import {authSelectors} from '../features/Auth'
 import {useActions} from 'utils/redux-utils'
 

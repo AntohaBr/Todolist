@@ -6,7 +6,7 @@ import {appActions} from '../CommonActions/App'
 const initializeApp = createAsyncThunk('application/initializeApp', async (param, {dispatch}) => {
     const res = await authAPI.me()
     if (res.data.resultCode === 0) {
-        dispatch(authActions.setIsLoggedIn({value: true}))
+        dispatch(authActions.setIsLoggedIn({isLoggedIn: true}))
     } else {
 
     }
@@ -19,8 +19,8 @@ export const asyncActions = {
 export const slice = createSlice({
     name: 'app',
     initialState: {
-        status: 'idle',
-        error: null,
+        status: 'idle' as RequestStatusType,
+        error: null as string | null,
         isInitialized: false
     } as InitialStateType,
     reducers: {},
@@ -39,11 +39,4 @@ export const slice = createSlice({
 })
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type InitialStateType = {
-    // происходит ли сейчас взаимодействие с сервером
-    status: RequestStatusType
-    // если ошибка какая-то глобальная произойдёт - мы запишем текст ошибки сюда
-    error: string | null
-    // true когда приложение проинициализировалось (проверили юзера, настройки получили и т.д.)
-    isInitialized: boolean
-}
+export type InitialStateType = ReturnType<typeof slice>

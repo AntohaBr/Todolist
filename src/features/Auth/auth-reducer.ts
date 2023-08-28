@@ -49,8 +49,8 @@ export const slice = createSlice({
         isLoggedIn: false
     },
     reducers: {
-        setIsLoggedIn(state, action: PayloadAction<{ value: boolean }>) {
-            state.isLoggedIn = action.payload.value
+        setIsLoggedIn(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
+            state.isLoggedIn = action.payload.isLoggedIn
         }
     },
     extraReducers: builder => {
