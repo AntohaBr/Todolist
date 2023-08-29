@@ -7,7 +7,7 @@ import {appActions} from '../CommonActions/App'
 const {setAppStatus} = appActions
 
 export const login = createAsyncThunk<undefined, LoginParamsType,
-    { rejectValue: { errors: Array<string>, fieldsErrors?: Array<FieldErrorType> } }>('auth/login',
+    { rejectValue: { errors: string[], fieldsErrors?: FieldErrorType[] } }>('auth/login',
     async (param, thunkAPI) => {
     thunkAPI.dispatch(setAppStatus({status: 'loading'}))
     try {
@@ -38,12 +38,7 @@ export const logout = createAsyncThunk('auth/logout', async (param, thunkAPI) =>
     }
 })
 
-export const asyncActions = {
-    login,
-    logout
-}
-
-export const slice = createSlice({
+const slice = createSlice({
     name: 'auth',
     initialState: {
         isLoggedIn: false
@@ -65,6 +60,9 @@ export const slice = createSlice({
 })
 
 export const authReducer = slice.reducer
-export const {setIsLoggedIn} = slice.actions
-
+export const authAction = slice.actions
+export const asyncActions = {
+    login,
+    logout
+}
 

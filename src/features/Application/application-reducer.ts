@@ -16,13 +16,13 @@ export const asyncActions = {
     initializeApp
 }
 
-export const slice = createSlice({
+const slice = createSlice({
     name: 'app',
     initialState: {
         status: 'idle' as RequestStatusType,
         error: null as string | null,
         isInitialized: false
-    } as InitialStateType,
+    } as AppInitialStateType,
     reducers: {},
     extraReducers: builder => {
         builder
@@ -38,5 +38,9 @@ export const slice = createSlice({
     }
 })
 
+
+export const appReducer = slice.reducer
+export const appAction = slice.actions
+
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type InitialStateType = ReturnType<typeof slice>
+export type AppInitialStateType = ReturnType<typeof slice.getInitialState>
