@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css'
-import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography} from '@material-ui/core'
 import {TodolistsList} from 'features/TodolistsList'
 import {ErrorSnackbar} from 'components/ErrorSnackbar/ErrorSnackbar'
 import {useSelector} from 'react-redux'
 import {appActions} from 'features/Application'
-import {Route} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import {authActions, Login} from 'features/Auth'
 import {selectIsInitialized, selectStatus} from 'features/Application/app.selectors'
 import {authSelectors} from '../features/Auth'
 import {useActions} from 'utils/redux-utils'
+import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography} from '@mui/material'
 
 type PropsType = {
     demo?: boolean
@@ -41,22 +41,24 @@ export const App = ({demo = false}: PropsType) => {
     }
 
     return (
-            <div className='App'>
-                <ErrorSnackbar/>
-                <AppBar position='static'>
-                    <Toolbar className='toolbar'>
-                        <Typography variant="h6">
-                            Todolist
-                        </Typography>
-                        {isLoggedIn && <Button color='inherit' onClick={logoutHandler}>Log out</Button>}
-                    </Toolbar>
-                    {status === 'loading' && <LinearProgress/>}
-                </AppBar>
-                <Container fixed>
-                    <Route exact path={'/'} render={() => <TodolistsList demo={demo}/>}/>
-                    <Route path={'/login'} render={() => <Login/>}/>
-                </Container>
-            </div>
+        <div className='App'>
+            <ErrorSnackbar/>
+            <AppBar position='static'>
+                <Toolbar className='toolbar'>
+                    <Typography variant="h6">
+                        Todolist
+                    </Typography>
+                    {isLoggedIn && <Button color='inherit' onClick={logoutHandler}>Log out</Button>}
+                </Toolbar>
+                {status === 'loading' && <LinearProgress/>}
+            </AppBar>
+            <Container fixed>
+                <Routes>
+                    <Route path={'/'} element={<TodolistsList demo={demo}/>}/>
+                    <Route path={'/login'} element={<Login/>}/>
+                </Routes>
+            </Container>
+        </div>
     )
 }
 
