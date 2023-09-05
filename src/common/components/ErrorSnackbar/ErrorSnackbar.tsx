@@ -1,13 +1,14 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { appActions } from "features/CommonActions/App"
-import { useActions } from "utils/redux-utils"
+import { useActions } from "common/utils/redux-utils"
 import { AlertProps, Snackbar } from "@mui/material"
 import { selectError } from "features/Application/app.selectors"
+import MuiAlert from "@mui/material/Alert"
 
-function Alert(props: AlertProps) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />
-}
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+})
 
 export const ErrorSnackbar = () => {
   const error = useSelector(selectError)

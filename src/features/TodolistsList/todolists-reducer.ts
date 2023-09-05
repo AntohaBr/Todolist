@@ -2,10 +2,10 @@ import { todolistsApi } from "api/todolists.api"
 import { RequestStatusType } from "../Application"
 import { appActions } from "../CommonActions/App"
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { handleServerAppError, handleServerNetworkError } from "utils"
+import { handleServerAppError, handleServerNetworkError } from "common/utils"
 import { TodolistType } from "api/types"
-import { ThunkError } from "utils/types"
-import {ResultCode} from "common/enums/common.enums";
+import { ThunkError } from "common/utils/types"
+import { ResultCode } from "common/enums/common.enums"
 
 const { setAppStatus } = appActions
 

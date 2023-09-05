@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit"
 import {authActions} from "features/Auth/auth.reducer"
 import {authAPI} from "api/auth.api"
-import {createAppAsyncThunk} from "utils"
+import {createAppAsyncThunk} from "common/utils"
 import {ResultCode} from "common/enums/common.enums";
 
 const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>(

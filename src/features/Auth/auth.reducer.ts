@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { FieldErrorType, LoginParamsType } from "api/types"
 import { appActions } from "../CommonActions/App"
 import { authAPI } from "api/auth.api"
-import { handleServerAppError, handleServerNetworkError } from "utils"
-import {ResultCode} from "common/enums/common.enums";
+import { handleServerAppError, handleServerNetworkError } from "common/utils"
+import { ResultCode } from "common/enums"
 
 const { setAppStatus } = appActions
 

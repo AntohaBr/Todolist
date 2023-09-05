@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { authActions, login } from "features/Auth/auth.reducer"
 import { Navigate } from "react-router-dom"
 import { selectIsLoggedIn } from "features/Auth/auth.selectors"
-import { useAppDispatch } from "utils/redux-utils"
+import { useAppDispatch } from "common/utils/redux-utils"
 import s from "./Login.module.css"
 
 type FormValuesType = {
