@@ -6,6 +6,7 @@ import { AppRootStateType, ThunkError } from "utils/types"
 import { TaskPriorities, TaskStatuses, TaskType, UpdateTaskModelType } from "api/types"
 import { createAppAsyncThunk } from "utils/create.async.thunk"
 import { handleServerAppError, handleServerNetworkError } from "utils"
+import {ResultCode} from "common/enums/common.enums";
 
 const initialState: TasksStateType = {}
 
@@ -41,7 +42,7 @@ const addTask = createAppAsyncThunk<TaskType, { title: string; todolistId: strin
     thunkAPI.dispatch(appActions.setAppStatus({ status: "loading" }))
     try {
       const res = await todolistsApi.createTask(param.todolistId, param.title)
-      if (res.data.resultCode === 0) {
+      if (res.data.resultCode === ResultCode.Success) {
         thunkAPI.dispatch(appActions.setAppStatus({ status: "succeeded" }))
         return res.data.data.item
       } else {
@@ -75,7 +76,7 @@ const updateTask = createAppAsyncThunk(
     }
     const res = await todolistsApi.updateTask(param.todolistId, param.taskId, apiModel)
     try {
-      if (res.data.resultCode === 0) {
+      if (res.data.resultCode === ResultCode.Success) {
         return param
       } else {
         return handleServerAppError(res.data, thunkAPI)

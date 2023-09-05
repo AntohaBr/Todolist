@@ -5,6 +5,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { handleServerAppError, handleServerNetworkError } from "utils"
 import { TodolistType } from "api/types"
 import { ThunkError } from "utils/types"
+import {ResultCode} from "common/enums/common.enums";
 
 const { setAppStatus } = appActions
 
@@ -39,7 +40,7 @@ const addTodolistTC = createAsyncThunk<{ todolist: TodolistType }, string, Thunk
     thunkAPI.dispatch(setAppStatus({ status: "loading" }))
     try {
       const res = await todolistsApi.createTodolist(title)
-      if (res.data.resultCode === 0) {
+      if (res.data.resultCode === ResultCode.Success) {
         thunkAPI.dispatch(setAppStatus({ status: "succeeded" }))
         return { todolist: res.data.data.item }
       } else {

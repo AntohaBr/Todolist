@@ -3,6 +3,7 @@ import { FieldErrorType, LoginParamsType } from "api/types"
 import { appActions } from "../CommonActions/App"
 import { authAPI } from "api/auth.api"
 import { handleServerAppError, handleServerNetworkError } from "utils"
+import {ResultCode} from "common/enums/common.enums";
 
 const { setAppStatus } = appActions
 
@@ -14,7 +15,7 @@ export const login = createAsyncThunk<
   thunkAPI.dispatch(setAppStatus({ status: "loading" }))
   try {
     const res = await authAPI.login(param)
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCode.Success) {
       thunkAPI.dispatch(setAppStatus({ status: "succeeded" }))
       return
     } else {
@@ -29,7 +30,7 @@ export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) =>
   thunkAPI.dispatch(setAppStatus({ status: "loading" }))
   try {
     const res = await authAPI.logout()
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCode.Success) {
       thunkAPI.dispatch(setAppStatus({ status: "succeeded" }))
       return
     } else {
