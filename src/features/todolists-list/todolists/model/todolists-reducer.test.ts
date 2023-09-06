@@ -4,11 +4,11 @@ import {
   FilterValuesType,
   TodolistDomainType,
   slice,
-} from "./todolists-reducer"
+} from "features/todolists-list/todolists/model/todolists-slice"
 import { v1 } from "uuid"
-import { RequestStatusType } from "features/Application/app-reducer"
-import { todolistsActions } from "./"
-import { TodolistType } from "../../api/types"
+import { RequestStatusType } from "app/app-reducer"
+import { todolistsActions } from ".."
+import { TodolistType } from "features/todolists-list/todolists/api/todolists-api-types"
 
 const todolistsReducer = slice.reducer
 const { addTodolistTC, changeTodolistTitleTC, fetchTodolistsTC, removeTodolistTC } = todolistsActions
@@ -38,7 +38,7 @@ test("correct todolist should be removed", () => {
 
 test("correct todolist should be added", () => {
   let todolist: TodolistType = {
-    title: "New Todolist",
+    title: "New todolist",
     id: "any id",
     addedDate: "",
     order: 0,
@@ -52,7 +52,7 @@ test("correct todolist should be added", () => {
 })
 
 test("correct todolist should change its name", () => {
-  let newTodolistTitle = "New Todolist"
+  let newTodolistTitle = "New todolist"
 
   let payload = { id: todolistId2, title: newTodolistTitle }
   const action = changeTodolistTitleTC.fulfilled(payload, "requestId", payload)

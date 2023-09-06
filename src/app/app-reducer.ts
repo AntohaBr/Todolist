@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {authActions} from "features/Auth/auth.reducer"
+import {authActions} from "features/auth/auth.reducer"
 import {authAPI} from "api/auth.api"
 import {createAppAsyncThunk} from "common/utils"
 import {ResultCode} from "common/enums/common.enums";

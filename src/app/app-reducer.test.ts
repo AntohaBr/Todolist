@@ -1,5 +1,5 @@
-import { slice, InitialStateType } from "features/Application/app-reducer"
-import { appActions } from "../CommonActions/App"
+import { slice, InitialStateType } from "app/app-reducer"
+import { appActions } from "features/CommonActions/App"
 const { reducer: appReducer } = slice
 const { setAppError, setAppStatus } = appActions
 

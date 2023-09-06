@@ -1,17 +1,9 @@
-import { TaskPriorities, TaskStatuses } from "common/enums/common.enums"
+import { TaskPriorities, TaskStatuses } from "common/enums"
 
-export type LoginParamsType = {
-  email: string
-  password: string
-  rememberMe: boolean
-  captcha?: string
-}
-
-export type TodolistType = {
-  id: string
-  title: string
-  addedDate: string
-  order: number
+export type GetTasksResponse = {
+  error: string | null
+  totalCount: number
+  items: TaskType[]
 }
 
 export type TaskType = {
@@ -34,10 +26,4 @@ export type UpdateTaskModelType = {
   priority: TaskPriorities
   startDate: string
   deadline: string
-}
-
-export type GetTasksResponse = {
-  error: string | null
-  totalCount: number
-  items: TaskType[]
 }

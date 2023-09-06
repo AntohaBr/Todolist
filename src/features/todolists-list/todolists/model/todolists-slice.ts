@@ -1,9 +1,9 @@
-import { todolistsApi } from "api/todolists.api"
+import { todolistsApi } from "features/todolists-list/todolists/api/todolists-api"
 import { RequestStatusType } from "../Application"
-import { appActions } from "../CommonActions/App"
+import { appActions } from "features/CommonActions/App"
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { handleServerAppError, handleServerNetworkError } from "common/utils"
-import { TodolistType } from "api/types"
+import { TodolistType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { ThunkError } from "common/utils/types"
 import { ResultCode } from "common/enums/common.enums"
 
@@ -110,7 +110,7 @@ export const slice = createSlice({
   },
 })
 
-export const todolistsReducer = slice.reducer
+export const todolistsSlice = slice.reducer
 
 export type FilterValuesType = "all" | "active" | "completed"
 export type TodolistDomainType = TodolistType & {

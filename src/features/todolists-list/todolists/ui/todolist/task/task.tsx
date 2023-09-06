@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useCallback } from "react"
 import { EditableSpan } from "common/components/EditableSpan/EditableSpan"
-import { tasksActions } from "../../index"
-import { TaskStatuses, TaskType } from "api/types"
 import { useActions } from "common/utils/redux-utils"
-import s from "./Task.module.css"
+import s from "features/todolists-list/todolists/ui/todolist/task/task.module.css"
 import { Checkbox, IconButton } from "@mui/material"
 import { Delete } from "@mui/icons-material"
+import { TaskStatuses } from "common/enums"
+import { TaskType } from "features/todolists-list/tasks/api/tasks.api.types"
 
 type TaskPropsType = {
   task: TaskType

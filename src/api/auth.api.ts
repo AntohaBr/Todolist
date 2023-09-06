@@ -1,4 +1,4 @@
-import { LoginParamsType } from "./types"
+import { LoginParamsType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { instance } from "api/instance"
 import { BaseResponseType } from "common/types/common.types"
 

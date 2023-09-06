@@ -1,4 +1,4 @@
-import { ResponseType } from "api/types"
+import { ResponseType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { appActions } from "features/CommonActions/App"
 
 export const handleServerAppError = <D>(data: ResponseType<D>, thunkAPI: ThunkAPIType, showError = true) => {

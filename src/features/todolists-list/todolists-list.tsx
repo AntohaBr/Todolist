@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { AddItemForm, AddItemFormSubmitHelperType } from "common/components"
-import { Todolist } from "./Todolist/Todolist"
+import { Todolist } from "features/todolists-list/todolists/ui/todolist/todolist"
 import { Navigate } from "react-router-dom"
-import { selectIsLoggedIn } from "features/Auth/auth.selectors"
+import { selectIsLoggedIn } from "features/auth/auth.selectors"
 import { todolistsActions } from "./index"
 import { useActions, useAppDispatch } from "common/utils/redux-utils"
-import s from "./TodolistsList.module.css"
-import { selectTasks } from "features/TodolistsList/Todolist/Task/task.selectors"
-import { selectTodolists } from "features/TodolistsList/Todolist/todolist.selectors"
+import s from "features/todolists-list/todolists-list.module.css"
+import { selectTasks } from "features/todolists-list/tasks/model/task.selectors"
+import { selectTodolists } from "features/todolists-list/todolists/model/todolists-selectors"
 
 type PropsType = {
   demo?: boolean

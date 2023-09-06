@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { FieldErrorType, LoginParamsType } from "api/types"
+import { FieldErrorType, LoginParamsType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { appActions } from "../CommonActions/App"
 import { authAPI } from "api/auth.api"
 import { handleServerAppError, handleServerNetworkError } from "common/utils"
