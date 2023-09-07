@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, memo, useCallback } from "react"
 import { EditableSpan } from "common/components/EditableSpan/EditableSpan"
 import { useActions } from "common/utils/redux-utils"
-import s from "features/todolists-list/todolists/ui/todolist/task/task.module.css"
+import s from "features/todolists-list/todolists/ui/todolist/tasks/task/task.module.css"
 import { Checkbox, IconButton } from "@mui/material"
 import { Delete } from "@mui/icons-material"
 import { TaskStatuses } from "common/enums"
@@ -19,7 +19,7 @@ export const Task: FC<Props> = memo(({ task, todolistId }) => {
 
   const onRemoveTask = useCallback(() => removeTask({ taskId, todolistId }), [taskId, todolistId])
 
-  const onChangeStatus = useCallback(
+  const onChangeTaskStatus = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       let newIsDoneValue = e.currentTarget.checked
       const status = newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New
@@ -28,7 +28,7 @@ export const Task: FC<Props> = memo(({ task, todolistId }) => {
     [taskId, todolistId]
   )
 
-  const onChangeTitle = useCallback(
+  const onChangeTaskTitle = useCallback(
     (newValue: string) => {
       updateTask({
         taskId,
@@ -45,12 +45,12 @@ export const Task: FC<Props> = memo(({ task, todolistId }) => {
         <Checkbox
           checked={task.status === TaskStatuses.Completed}
           color="primary"
-          onChange={onChangeStatus}
+          onChange={onChangeTaskStatus}
           style={{ padding: "10px 5px 0px 0px" }}
         />
       </div>
       <p className={s.editableSpan}>
-        <EditableSpan value={task.title} onChange={onChangeTitle} />
+        <EditableSpan value={task.title} onChange={onChangeTaskTitle} />
       </p>
       <IconButton size={"small"} onClick={onRemoveTask} style={{ position: "absolute", top: "8px", right: "2px" }}>
         <Delete fontSize={"small"} />
