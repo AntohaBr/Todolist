@@ -3,14 +3,14 @@ import "./App.css"
 import { ErrorSnackbar } from "common/components/ErrorSnackbar/ErrorSnackbar"
 import { useSelector } from "react-redux"
 import { Route, Routes } from "react-router-dom"
-import { selectIsInitialized, selectStatus } from "app/app.selectors"
+import { selectIsInitialized, selectStatus } from "app/app-selectors"
 import { useActions } from "common/utils/redux-utils"
 import { AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography } from "@mui/material"
-import { authActions } from "features/auth/auth.reducer"
+import { authActions } from "features/auth/auth-slice"
 import { TodolistsList } from "features/todolists-list/todolists-list"
 import { Login } from "features/auth/Login"
 import { appActions } from "app/app-reducer"
-import { selectIsLoggedIn } from "features/auth/auth.selectors"
+import { selectIsLoggedIn } from "features/auth/auth-selectors"
 
 type PropsType = {
   demo?: boolean

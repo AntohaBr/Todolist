@@ -1,9 +1,3 @@
-export type ResponseType<D = {}> = {
-  resultCode: number
-  messages: Array<string>
-  data: D
-}
-
 export type BaseResponseType<D = {}> = {
   resultCode: number
   messages: string[]
