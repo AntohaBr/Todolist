@@ -3,7 +3,7 @@ import { AddItemForm } from "common/components/AddItemForm/AddItemForm"
 import { TodolistDomainType } from "features/todolists-list/todolists/model/todolists-slice"
 import { useActions } from "common/utils/redux-utils"
 import { Paper } from "@mui/material"
-import { TaskType } from "features/todolists-list/tasks/api/tasks.api.types"
+import { TaskType } from "features/todolists-list/tasks/api/tasks-api.types"
 import { FilterTasksButtons } from "features/todolists-list/todolists/ui/todolist/filter-tasks-buttons/filter-tasks-buttons"
 import { Tasks } from "features/todolists-list/todolists/ui/todolist/tasks/tasks"
 import { TodolistTitle } from "features/todolists-list/todolists/ui/todolist/todolist-title/todolist-title"
@@ -16,20 +16,21 @@ type PropsType = {
 }
 
 export const Todolist: FC<PropsType> = memo(({ todolist, tasks, demo = false }) => {
+  const todolistId = todolist.id
   const { fetchTasks, addTask } = useActions(tasksThunks)
 
   useEffect(() => {
     if (demo) {
       return
     }
-    fetchTasks(todolist.id)
+    fetchTasks(todolistId)
   }, [])
 
   const addTaskCallback = useCallback(
     (title: string) => {
-      addTask({ title, todolistId: todolist.id })
+      addTask({ title, todolistId })
     },
-    [todolist.id]
+    [todolistId]
   )
 
   return (

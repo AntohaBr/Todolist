@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { FieldErrorType, LoginParamsType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { appActions } from "../CommonActions/App"
-import { authAPI } from "api/auth.api"
+import { authApi } from "features/auth/api/auth-api"
 import { handleServerAppError, handleServerNetworkError } from "common/utils"
 import { ResultCode } from "common/enums"
 
@@ -14,7 +14,7 @@ export const login = createAsyncThunk<
 >("auth/login", async (param, thunkAPI) => {
   thunkAPI.dispatch(setAppStatus({ status: "loading" }))
   try {
-    const res = await authAPI.login(param)
+    const res = await authApi.login(param)
     if (res.data.resultCode === ResultCode.Success) {
       thunkAPI.dispatch(setAppStatus({ status: "succeeded" }))
       return
@@ -29,7 +29,7 @@ export const login = createAsyncThunk<
 export const logout = createAsyncThunk("auth/logout", async (param, thunkAPI) => {
   thunkAPI.dispatch(setAppStatus({ status: "loading" }))
   try {
-    const res = await authAPI.logout()
+    const res = await authApi.logout()
     if (res.data.resultCode === ResultCode.Success) {
       thunkAPI.dispatch(setAppStatus({ status: "succeeded" }))
       return

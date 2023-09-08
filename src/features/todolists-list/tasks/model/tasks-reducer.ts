@@ -5,9 +5,9 @@ import { asyncActions as asyncTodolistsActions } from "features/todolists-list/t
 import { AppRootStateType, ThunkError } from "common/utils/types"
 import { createAppAsyncThunk } from "common/utils/create.async.thunk"
 import { handleServerAppError, handleServerNetworkError } from "common/utils"
-import { ResultCode, TaskPriorities, TaskStatuses } from "common/enums/common.enums"
-import { tasksApi } from "features/todolists-list/tasks/api/tasks.api."
-import { TaskType } from "features/todolists-list/tasks/api/tasks.api.types"
+import { ResultCode, TaskPriorities, TaskStatuses } from "common/enums/common-enums"
+import { tasksApi } from "features/todolists-list/tasks/api/tasks-api."
+import { TaskType } from "features/todolists-list/tasks/api/tasks-api.types"
 
 const initialState: TasksStateType = {}
 

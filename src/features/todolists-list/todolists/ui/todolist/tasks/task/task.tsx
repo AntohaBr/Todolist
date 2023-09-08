@@ -5,7 +5,7 @@ import s from "features/todolists-list/todolists/ui/todolist/tasks/task/task.mod
 import { Checkbox, IconButton } from "@mui/material"
 import { Delete } from "@mui/icons-material"
 import { TaskStatuses } from "common/enums"
-import { TaskType } from "features/todolists-list/tasks/api/tasks.api.types"
+import { TaskType } from "features/todolists-list/tasks/api/tasks-api.types"
 import { tasksThunks } from "features/todolists-list/tasks/model/tasks-reducer"
 
 type Props = {

@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { handleServerAppError, handleServerNetworkError } from "common/utils"
 import { TodolistType } from "features/todolists-list/todolists/api/todolists-api-types"
 import { ThunkError } from "common/utils/types"
-import { ResultCode } from "common/enums/common.enums"
+import { ResultCode } from "common/enums/common-enums"
 
 const { setAppStatus } = appActions
 

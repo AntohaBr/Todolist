@@ -1,15 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit"
 import {authActions} from "features/auth/auth.reducer"
-import {authAPI} from "api/auth.api"
+import {authApi} from "features/auth/api/auth-api"
 import {createAppAsyncThunk} from "common/utils"
-import {ResultCode} from "common/enums/common.enums";
+import {ResultCode} from "common/enums/common-enums";
 
 const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>(
     "app/initializeApp",
     async (_, thunkAPI) => {
         const {dispatch, rejectWithValue} = thunkAPI
         try {
-            const res = await authAPI.me()
+            const res = await authApi.me()
             if (res.data.resultCode === ResultCode.Success) {
                 dispatch(authActions.setIsLoggedIn({isLoggedIn: true}))
             } else {
