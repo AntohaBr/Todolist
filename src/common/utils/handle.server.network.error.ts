@@ -1,8 +1,8 @@
 import axios from "axios"
-import { appActions } from "features/CommonActions/App"
-import { AppDispatch } from "app/store"
+import { appActions } from "app/app-slice"
+import { AppDispatchType } from "common/types"
 
-export const handleServerNetworkError = (error: unknown, dispatch: AppDispatch): void => {
+export const handleServerNetworkError = (error: unknown, dispatch: AppDispatchType): void => {
   let errorMessage = "Some error occurre"
 
   if (axios.isAxiosError(error)) {

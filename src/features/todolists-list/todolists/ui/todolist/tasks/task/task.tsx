@@ -1,12 +1,12 @@
 import React, { ChangeEvent, FC, memo, useCallback } from "react"
 import { EditableSpan } from "common/components/EditableSpan/EditableSpan"
-import { useActions } from "common/utils/redux-utils"
 import s from "features/todolists-list/todolists/ui/todolist/tasks/task/task.module.css"
 import { Checkbox, IconButton } from "@mui/material"
 import { Delete } from "@mui/icons-material"
 import { TaskStatuses } from "common/enums"
 import { TaskType } from "features/todolists-list/tasks/api/tasks-api.types"
 import { tasksThunks } from "features/todolists-list/tasks/model/tasks-reducer"
+import {useActions} from "common/hooks";
 
 type Props = {
   task: TaskType

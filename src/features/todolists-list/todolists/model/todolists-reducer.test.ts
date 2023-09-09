@@ -6,7 +6,7 @@ import {
   slice,
 } from "features/todolists-list/todolists/model/todolists-slice"
 import { v1 } from "uuid"
-import { RequestStatusType } from "app/app-reducer"
+import { RequestStatusType } from "app/app-slice"
 import { todolistsActions } from ".."
 import { TodolistType } from "features/todolists-list/todolists/api/todolists-api-types"
 

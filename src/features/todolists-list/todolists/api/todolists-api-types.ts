@@ -4,3 +4,7 @@ export type TodolistType = {
   addedDate: string
   order: number
 }
+export type UpdateTodolistTitleArgType = {
+  id: string
+  title: string
+}

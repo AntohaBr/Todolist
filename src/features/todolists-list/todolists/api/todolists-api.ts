@@ -1,4 +1,4 @@
-import { TodolistType } from "features/todolists-list/todolists/api"
+import { TodolistType, UpdateTodolistTitleArgType } from "features/todolists-list/todolists/api"
 import { commonApi } from "common/api"
 import { BaseResponseType } from "common/types"
 
@@ -12,7 +12,7 @@ export const todolistsApi = {
   deleteTodolist(id: string) {
     return commonApi.delete<BaseResponseType>(`todo-lists/${id}`)
   },
-  updateTodolist(id: string, title: string) {
-    return commonApi.put<BaseResponseType>(`todo-lists/${id}`, { title: title })
+  updateTodolist(arg: UpdateTodolistTitleArgType) {
+    return commonApi.put<BaseResponseType>(`todo-lists/${arg.id}`, { title: arg.title })
   },
 }

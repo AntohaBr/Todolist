@@ -1,13 +1,13 @@
 import React, { FC, memo, useCallback, useEffect } from "react"
 import { AddItemForm } from "common/components/AddItemForm/AddItemForm"
 import { TodolistDomainType } from "features/todolists-list/todolists/model/todolists-slice"
-import { useActions } from "common/utils/redux-utils"
 import { Paper } from "@mui/material"
 import { TaskType } from "features/todolists-list/tasks/api/tasks-api.types"
 import { FilterTasksButtons } from "features/todolists-list/todolists/ui/todolist/filter-tasks-buttons/filter-tasks-buttons"
 import { Tasks } from "features/todolists-list/todolists/ui/todolist/tasks/tasks"
 import { TodolistTitle } from "features/todolists-list/todolists/ui/todolist/todolist-title/todolist-title"
 import { tasksThunks } from "features/todolists-list/tasks/model/tasks-reducer"
+import {useActions} from "common/hooks";
 
 type PropsType = {
   todolist: TodolistDomainType

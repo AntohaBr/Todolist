@@ -1,5 +1,5 @@
 import { appActions } from "features/CommonActions/App"
-import { BaseResponseType } from "common/types/common-types"
+import { BaseResponseType } from "common/types"
 import { Dispatch } from "redux"
 
 export const handleServerAppError = <D>(

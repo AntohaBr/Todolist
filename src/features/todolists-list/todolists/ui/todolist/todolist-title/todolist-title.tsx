@@ -4,7 +4,7 @@ import s from "features/todolists-list/todolists/ui/todolist/todolist.module.css
 import { EditableSpan } from "common/components"
 import React, { FC, useCallback } from "react"
 import { TodolistDomainType, todolistsThunks } from "features/todolists-list/todolists/model/todolists-slice"
-import { useActions } from "common/utils/redux-utils"
+import {useActions} from "common/hooks";
 
 type Props = {
   todolist: TodolistDomainType

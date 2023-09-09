@@ -4,11 +4,11 @@ import { AddItemForm } from "common/components"
 import { Todolist } from "features/todolists-list/todolists/ui/todolist/todolist"
 import { Navigate } from "react-router-dom"
 import { selectIsLoggedIn } from "features/auth/auth-selectors"
-import { useActions } from "common/utils/redux-utils"
 import s from "features/todolists-list/todolists-list.module.css"
 import { selectTasks } from "features/todolists-list/tasks/model/task.selectors"
 import { selectTodolists } from "features/todolists-list/todolists/model/todolists-selectors"
 import { todolistsThunks } from "features/todolists-list/todolists/model/todolists-slice"
+import {useActions} from "common/hooks";
 
 type Props = {
   demo?: boolean
