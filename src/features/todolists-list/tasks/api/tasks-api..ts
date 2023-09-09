@@ -1,18 +1,27 @@
 import { commonApi } from "common/api"
 import { BaseResponseType } from "common/types"
-import { GetTasksResponse, TaskType, UpdateTaskModelType } from "features/todolists-list/tasks/api"
+import {
+  AddTaskArgType,
+  GetTasksResponse,
+  RemoveTaskArgType,
+  TaskType,
+  UpdateTaskArgType,
+  UpdateTaskModelType,
+} from "features/todolists-list/tasks/api"
 
 export const tasksApi = {
   getTasks(todolistId: string) {
     return commonApi.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`)
   },
-  deleteTask(todolistId: string, taskId: string) {
-    return commonApi.delete<BaseResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`)
+  deleteTask(arg: RemoveTaskArgType) {
+    return commonApi.delete<BaseResponseType>(`todo-lists/${arg.todolistId}/tasks/${arg.taskId}`)
   },
-  createTask(todolistId: string, taskTitile: string) {
-    return commonApi.post<BaseResponseType<{ item: TaskType }>>(`todo-lists/${todolistId}/tasks`, { title: taskTitile })
+  createTask(arg: AddTaskArgType) {
+    return commonApi.post<BaseResponseType<{ item: TaskType }>>(`todo-lists/${arg.todolistId}/tasks`, {
+      title: arg.title,
+    })
   },
-  updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
-    return commonApi.put<BaseResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model)
+  updateTask(arg: UpdateTaskArgType, apiModel: UpdateTaskModelType) {
+    return commonApi.put<BaseResponseType<TaskType>>(`todo-lists/${arg.todolistId}/tasks/${arg.taskId}`, apiModel)
   },
 }

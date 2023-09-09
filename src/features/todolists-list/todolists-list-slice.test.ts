@@ -4,7 +4,7 @@ import {
   todolistsThunks,
 } from "features/todolists-list/todolists/model/todolists-slice"
 import { TodolistType } from "features/todolists-list/todolists/api"
-import { tasksReducer, TasksStateType } from "features/todolists-list/tasks/model/tasks-reducer"
+import { tasksSlice, TasksStateType } from "features/todolists-list/tasks/model/tasks-reducer"
 
 test("ids should be equals", () => {
   const startTasksState: TasksStateType = {}
@@ -19,7 +19,7 @@ test("ids should be equals", () => {
 
   const action = todolistsThunks.addTodolist.fulfilled({ todolist }, "requestId", todolist.title)
 
-  const endTasksState = tasksReducer(startTasksState, action)
+  const endTasksState = tasksSlice(startTasksState, action)
   const endTodolistsState = todolistsSlice(startTodolistsState, action)
 
   const keys = Object.keys(endTasksState)

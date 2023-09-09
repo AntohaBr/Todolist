@@ -5,7 +5,6 @@ export type GetTasksResponse = {
   totalCount: number
   items: TaskType[]
 }
-
 export type TaskType = {
   description: string
   title: string
@@ -18,7 +17,6 @@ export type TaskType = {
   order: number
   addedDate: string
 }
-
 export type UpdateTaskModelType = {
   title: string
   description: string
@@ -26,4 +24,25 @@ export type UpdateTaskModelType = {
   priority: TaskPriorities
   startDate: string
   deadline: string
+}
+export type AddTaskArgType = {
+  title: string
+  todolistId: string
+}
+export type RemoveTaskArgType = {
+  taskId: string
+  todolistId: string
+}
+export type UpdateDomainTaskModelType = {
+  title?: string
+  description?: string
+  status?: TaskStatuses
+  priority?: TaskPriorities
+  startDate?: string
+  deadline?: string
+}
+export type UpdateTaskArgType = {
+  taskId: string
+  domainModel: UpdateDomainTaskModelType
+  todolistId: string
 }

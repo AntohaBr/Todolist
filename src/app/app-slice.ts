@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { authApi } from "features/auth/api"
-import { createAppAsyncThunk, thunkTryCatch } from "common/utils"
+import { createAppAsyncThunk } from "common/utils"
 import { ResultCode } from "common/enums"
 import { appActions } from "common/actions"
 
