@@ -1,21 +1,28 @@
-import React, { ChangeEvent, KeyboardEvent, memo, useState } from "react"
-import { AddBox } from "@mui/icons-material"
-import { IconButton, TextField } from "@mui/material"
+import React, {ChangeEvent, FC, KeyboardEvent, memo, useState} from "react"
+import {AddBox} from "@mui/icons-material"
+import {IconButton, TextField} from "@mui/material"
+import {RejectValueType} from "common/utils/create-async-thunk"
 
-export type AddItemFormSubmitHelperType = { setError: (error: string) => void; setTitle: (title: string) => void }
-
-type AddItemFormPropsType = {
-  addItem: (title: string, helper: AddItemFormSubmitHelperType) => void
+type Props = {
+  addItem: (title: string) => Promise<unknown>
   disabled?: boolean
 }
-
-export const AddItemForm = memo(({ addItem, disabled = false }: AddItemFormPropsType) => {
+export const AddItemForm: FC<Props> = memo(({addItem, disabled = false}) => {
   const [title, setTitle] = useState("")
   const [error, setError] = useState<string | null>(null)
 
-  const addItemHandler = async () => {
+  const addItemHandler = () => {
     if (title.trim() !== "") {
-      addItem(title, { setError, setTitle })
+      addItem(title)
+        .then(() => {
+          setTitle("")
+        })
+        .catch((err: RejectValueType) => {
+          if (err.data) {
+            const messages = err.data.messages
+            setError(messages.length ? messages[0] : "Some error occurred")
+          }
+        })
     } else {
       setError("Title is required")
     }
@@ -46,7 +53,7 @@ export const AddItemForm = memo(({ addItem, disabled = false }: AddItemFormProps
         label="Title"
         helperText={error}
       />
-      <IconButton color="primary" onClick={addItemHandler} disabled={disabled} style={{ marginLeft: "5px" }}>
+      <IconButton color="primary" onClick={addItemHandler} disabled={disabled} style={{marginLeft: "5px"}}>
         <AddBox />
       </IconButton>
     </div>

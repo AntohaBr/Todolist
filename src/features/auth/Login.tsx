@@ -1,12 +1,13 @@
 import React from "react"
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField } from "@material-ui/core"
-import { FormikHelpers, useFormik } from "formik"
-import { useSelector } from "react-redux"
-import { authActions, login } from "features/auth/auth-slice"
-import { Navigate } from "react-router-dom"
-import { selectIsLoggedIn } from "features/auth/auth-selectors"
-import { useAppDispatch } from "common/utils/redux-utils"
+import {FormikHelpers, useFormik} from "formik"
+import {useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
+import {selectIsLoggedIn} from "features/auth/auth-selectors"
 import s from "./Login.module.css"
+import {useActions} from "common/hooks"
+import {BaseResponseType} from "common/types"
+import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField} from "@mui/material"
+import {authThunks} from "features/auth/auth-slice"
 
 type FormValuesType = {
   email: string
@@ -15,9 +16,9 @@ type FormValuesType = {
 }
 
 export const Login = () => {
-  const dispatch = useAppDispatch()
-
   const isLoggedIn = useSelector(selectIsLoggedIn)
+
+  const {login} = useActions(authThunks)
 
   const formik = useFormik({
     validate: (values) => {
@@ -38,14 +39,13 @@ export const Login = () => {
       rememberMe: false,
     },
     onSubmit: async (values: FormValuesType, formikHelpers: FormikHelpers<FormValuesType>) => {
-      const resultAction = await dispatch(authActions.login(values))
-
-      if (login.rejected.match(resultAction)) {
-        if (resultAction.payload?.fieldsErrors?.length) {
-          const error = resultAction.payload?.fieldsErrors[0]
-          formikHelpers.setFieldError(error.field, error.error)
-        }
-      }
+      login(values)
+        .unwrap()
+        .catch((reason: BaseResponseType) => {
+          reason.fieldsErrors?.forEach((fieldError) => {
+            formikHelpers.setFieldError(fieldError.field, fieldError.error)
+          })
+        })
     },
   })
 
@@ -75,14 +75,14 @@ export const Login = () => {
             </FormLabel>
             <FormGroup>
               <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
-              {formik.errors.email ? <div style={{ color: "red" }}>{formik.errors.email}</div> : null}
+              {formik.errors.email ? <div style={{color: "red"}}>{formik.errors.email}</div> : null}
               <TextField type="password" label="Password" margin="normal" {...formik.getFieldProps("password")} />
-              {formik.errors.password ? <div style={{ color: "red" }}>{formik.errors.password}</div> : null}
+              {formik.errors.password ? <div style={{color: "red"}}>{formik.errors.password}</div> : null}
               <FormControlLabel
                 label={"Remember me"}
                 control={<Checkbox {...formik.getFieldProps("rememberMe")} checked={formik.values.rememberMe} />}
               />
-              <Button type={"submit"} variant={"contained"} color={"primary"} style={{ marginTop: 30 }}>
+              <Button type={"submit"} variant={"contained"} color={"primary"} style={{marginTop: 30}}>
                 Login
               </Button>
             </FormGroup>

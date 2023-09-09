@@ -1,5 +1,5 @@
-import { commonApi } from "common/api"
-import { BaseResponseType } from "common/types"
+import {commonApi} from "common/api"
+import {BaseResponseType} from "common/types"
 import {
   AddTaskArgType,
   GetTasksResponse,
@@ -17,7 +17,7 @@ export const tasksApi = {
     return commonApi.delete<BaseResponseType>(`todo-lists/${arg.todolistId}/tasks/${arg.taskId}`)
   },
   createTask(arg: AddTaskArgType) {
-    return commonApi.post<BaseResponseType<{ item: TaskType }>>(`todo-lists/${arg.todolistId}/tasks`, {
+    return commonApi.post<BaseResponseType<{item: TaskType}>>(`todo-lists/${arg.todolistId}/tasks`, {
       title: arg.title,
     })
   },

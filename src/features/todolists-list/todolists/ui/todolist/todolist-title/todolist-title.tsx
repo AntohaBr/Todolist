@@ -1,17 +1,17 @@
-import { IconButton } from "@mui/material"
-import { Delete } from "@mui/icons-material"
+import {IconButton} from "@mui/material"
+import {Delete} from "@mui/icons-material"
 import s from "features/todolists-list/todolists/ui/todolist/todolist.module.css"
-import { EditableSpan } from "common/components"
-import React, { FC, useCallback } from "react"
-import { TodolistDomainType, todolistsThunks } from "features/todolists-list/todolists/model/todolists-slice"
-import {useActions} from "common/hooks";
+import {EditableSpan} from "common/components"
+import React, {FC, useCallback} from "react"
+import {TodolistDomainType, todolistsThunks} from "features/todolists-list/todolists/model/todolists-slice"
+import {useActions} from "common/hooks"
 
 type Props = {
   todolist: TodolistDomainType
 }
 
-export const TodolistTitle: FC<Props> = ({ todolist }) => {
-  const { removeTodolist, changeTodolistTitle } = useActions(todolistsThunks)
+export const TodolistTitle: FC<Props> = ({todolist}) => {
+  const {removeTodolist, changeTodolistTitle} = useActions(todolistsThunks)
 
   const onRemoveTodolist = () => {
     removeTodolist(todolist.id)
@@ -19,9 +19,9 @@ export const TodolistTitle: FC<Props> = ({ todolist }) => {
 
   const onChangeTodolistTitle = useCallback(
     (title: string) => {
-      changeTodolistTitle({ id: todolist.id, title})
+      changeTodolistTitle({id: todolist.id, title})
     },
-    [todolist.id]
+    [todolist.id],
   )
 
   return (
@@ -30,7 +30,7 @@ export const TodolistTitle: FC<Props> = ({ todolist }) => {
         size={"small"}
         onClick={onRemoveTodolist}
         disabled={todolist.entityStatus === "loading"}
-        style={{ position: "absolute", right: "5px", top: "30px" }}
+        style={{position: "absolute", right: "5px", top: "30px"}}
       >
         <Delete fontSize={"small"} />
       </IconButton>

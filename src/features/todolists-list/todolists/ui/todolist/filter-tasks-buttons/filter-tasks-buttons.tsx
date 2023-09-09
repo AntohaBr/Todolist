@@ -1,12 +1,12 @@
-import React, { FC, useCallback } from "react"
-import { FilterValuesType, TodolistDomainType } from "features/todolists-list/todolists/model/todolists-slice"
-import { Button, PropTypes } from "@mui/material"
+import React, {FC, useCallback} from "react"
+import {FilterValuesType, TodolistDomainType} from "features/todolists-list/todolists/model/todolists-slice"
+import {Button, PropTypes} from "@mui/material"
 
 type Props = {
   todolist: TodolistDomainType
 }
 
-export const FilterTasksButtons: FC<Props> = ({ todolist }) => {
+export const FilterTasksButtons: FC<Props> = ({todolist}) => {
   const renderFilterButton = (buttonFilter: FilterValuesType, color: PropTypes.Color, text: string) => {
     return (
       <Button
@@ -25,7 +25,7 @@ export const FilterTasksButtons: FC<Props> = ({ todolist }) => {
         filter: filter,
         id: todolist.id,
       }),
-    [todolist.id]
+    [todolist.id],
   )
 
   return (

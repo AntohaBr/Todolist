@@ -1,17 +1,17 @@
 .taskContainer {
-    position: relative;
-    display: flex;
-    flex-direction: row;
+  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .editableSpan {
-    cursor: pointer;
-    word-break: break-word;
-    max-width: 81%;
-    display: block;
-    margin-top: 10px;
+  cursor: pointer;
+  word-break: break-word;
+  max-width: 81%;
+  display: block;
+  margin-top: 10px;
 }
 
 .isDone {
-    opacity: 0.5;
+  opacity: 0.5;
 }

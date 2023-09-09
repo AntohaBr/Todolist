@@ -1,4 +1,4 @@
-import { store } from "app/store"
+import {store} from "app/store"
 
 export type BaseResponseType<D = {}> = {
   resultCode: number
@@ -12,4 +12,3 @@ export type FieldErrorType = {
 }
 export type AppRootStateType = ReturnType<typeof store.getState>
 export type AppDispatchType = typeof store.dispatch
-// export type ThunkError = { rejectValue: { errors: string[]; fieldsErrors?: FieldErrorType[] } }

@@ -1,6 +1,6 @@
-import { todolistsThunks } from "features/todolists-list/todolists/model/todolists-slice"
-import { tasksSlice, TasksStateType, tasksThunks } from "features/todolists-list/tasks/model/tasks-reducer"
-import { TaskPriorities, TaskStatuses } from "common/enums"
+import {todolistsThunks} from "features/todolists-list/todolists/model/todolists-slice"
+import {tasksSlice, TasksStateType, tasksThunks} from "features/todolists-list/tasks/model/tasks-slice"
+import {TaskPriorities, TaskStatuses} from "common/enums"
 
 let startState: TasksStateType = {}
 beforeEach(() => {
@@ -85,7 +85,7 @@ beforeEach(() => {
 })
 
 test("correct task should be deleted from correct array", () => {
-  let param = { taskId: "2", todolistId: "todolistId2" }
+  let param = {taskId: "2", todolistId: "todolistId2"}
   const action = tasksThunks.removeTask.fulfilled(param, "requestId", param)
 
   const endState = tasksSlice(startState, action)
@@ -108,7 +108,10 @@ test("correct task should be added to correct array", () => {
     startDate: "",
     id: "id exists",
   }
-  const action = tasksThunks.addTask.fulfilled({ task }, "requestId", {title: task.title, todolistId: task.todoListId});
+  const action = tasksThunks.addTask.fulfilled({task}, "requestId", {
+    title: task.title,
+    todolistId: task.todoListId,
+  })
 
   const endState = tasksSlice(startState, action)
 
@@ -120,7 +123,7 @@ test("correct task should be added to correct array", () => {
 })
 
 test("status of specified task should be changed", () => {
-  let updateModel = { taskId: "2", domainModel: { status: TaskStatuses.New }, todolistId: "todolistId2" }
+  let updateModel = {taskId: "2", domainModel: {status: TaskStatuses.New}, todolistId: "todolistId2"}
   const action = tasksThunks.updateTask.fulfilled(updateModel, "requestId", updateModel)
 
   const endState = tasksSlice(startState, action)
@@ -130,7 +133,7 @@ test("status of specified task should be changed", () => {
 })
 
 test("title of specified task should be changed", () => {
-  let updateModel = { taskId: "2", domainModel: { title: "yogurt" }, todolistId: "todolistId2" }
+  let updateModel = {taskId: "2", domainModel: {title: "yogurt"}, todolistId: "todolistId2"}
   const action = tasksThunks.updateTask.fulfilled(updateModel, "requestId", updateModel)
 
   const endState = tasksSlice(startState, action)
@@ -163,7 +166,7 @@ test("new array should be added when new todolist is added", () => {
 })
 
 test("propertry with todolistId should be deleted", () => {
-  const action = todolistsThunks.removeTodolist.fulfilled({ id: "todolistId2" }, "requestId", "todolistId2")
+  const action = todolistsThunks.removeTodolist.fulfilled({id: "todolistId2"}, "requestId", "todolistId2")
 
   const endState = tasksSlice(startState, action)
 
@@ -176,8 +179,8 @@ test("propertry with todolistId should be deleted", () => {
 test("empty arrays should be added when we set todolists", () => {
   let payload = {
     todolists: [
-      { id: "1", title: "title 1", order: 0, addedDate: "" },
-      { id: "2", title: "title 2", order: 0, addedDate: "" },
+      {id: "1", title: "title 1", order: 0, addedDate: ""},
+      {id: "2", title: "title 2", order: 0, addedDate: ""},
     ],
   }
   const action = todolistsThunks.fetchTodolists.fulfilled(payload, "requestId", undefined)
@@ -198,7 +201,7 @@ test("tasks should be added for todolist", () => {
       todolistId: "todolistId1",
     },
     "requestId",
-    "todolistId1"
+    "todolistId1",
   )
 
   const endState = tasksSlice(
@@ -206,7 +209,7 @@ test("tasks should be added for todolist", () => {
       todolistId2: [],
       todolistId1: [],
     },
-    action
+    action,
   )
 
   expect(endState["todolistId1"].length).toBe(3)
