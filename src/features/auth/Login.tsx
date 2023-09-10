@@ -1,4 +1,4 @@
-import React from "react"
+import React, {FC} from "react"
 import {FormikHelpers, useFormik} from "formik"
 import {useSelector} from "react-redux"
 import {Navigate} from "react-router-dom"
@@ -6,10 +6,11 @@ import {selectIsLoggedIn} from "features/auth/auth-selectors"
 import s from "./Login.module.css"
 import {useActions} from "common/hooks"
 import {BaseResponseType} from "common/types"
-import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField} from "@mui/material"
 import {authThunks} from "features/auth/auth-slice"
+import {LoginParamsType} from "features/auth/api"
+import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField} from "common/collections-mui";
 
-export const Login = () => {
+export const Login: FC = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn)
 
     const {login} = useActions(authThunks)
@@ -26,7 +27,7 @@ export const Login = () => {
             if (!values.password) {
                 errors.password = "Required";
             } else if (values.password.length < 3) {
-                errors.password = "Must be 3 characters or more";
+                errors.password = "Must be 3 characters or more"
             }
 
             return errors;
@@ -36,15 +37,15 @@ export const Login = () => {
             password: "",
             rememberMe: false,
         },
-        onSubmit: async (values: FormValuesType, formikHelpers: FormikHelpers<FormValuesType>) => {
+        onSubmit: (values, formikHelpers: FormikHelpers<LoginParamsType>) => {
             login(values)
                 .unwrap()
                 .catch((reason: BaseResponseType) => {
                     reason.fieldsErrors?.forEach((fieldError) => {
-                        formikHelpers.setFieldError(fieldError.field, fieldError.error)
+                        formikHelpers.setFieldError(fieldError.field, fieldError.error);
                     })
                 })
-        },
+        }
     })
 
     if (isLoggedIn) {
@@ -73,16 +74,24 @@ export const Login = () => {
                         </FormLabel>
                         <FormGroup>
                             <TextField label="Email" margin="normal" {...formik.getFieldProps("email")} />
-                            {formik.errors.email ? <div style={{color: "red"}}>{formik.errors.email}</div> : null}
+                            {formik.touched.email && formik.errors.email ?
+                                <div style={{color: "red"}}>{formik.errors.email}</div> : null}
                             <TextField type="password" label="Password"
                                        margin="normal" {...formik.getFieldProps("password")} />
-                            {formik.errors.password ? <div style={{color: "red"}}>{formik.errors.password}</div> : null}
+                            {formik.touched.password && formik.errors.password ?
+                                <div style={{color: "red"}}>{formik.errors.password}</div> : null}
                             <FormControlLabel
                                 label={"Remember me"}
                                 control={<Checkbox {...formik.getFieldProps("rememberMe")}
                                                    checked={formik.values.rememberMe}/>}
                             />
-                            <Button type={"submit"} variant={"contained"} color={"primary"} style={{marginTop: 30}}>
+                            <Button
+                                type={"submit"}
+                                variant={"contained"}
+                                disabled={!(formik.isValid && formik.dirty)}
+                                color={"primary"}
+                                style={{marginTop: 30}}
+                            >
                                 Login
                             </Button>
                         </FormGroup>

@@ -1,7 +1,6 @@
 import React, {ChangeEvent, FC, KeyboardEvent, memo, useState} from "react"
-import {AddBox} from "@mui/icons-material"
-import {IconButton, TextField} from "@mui/material"
-import {RejectValueType} from "common/utils/create-async-thunk"
+import {RejectValueType} from "common/utils"
+import {AddBox, IconButton, TextField} from "common/collections-mui"
 
 type Props = {
   addItem: (title: string) => Promise<unknown>

@@ -4,8 +4,8 @@ import {
     TodolistDomainType,
     todolistsActions
 } from "features/todolists-list/todolists/model/todolists-slice"
-import {Button, PropTypes} from "@mui/material"
-import {useActions} from "common/hooks";
+import {useActions} from "common/hooks"
+import {Button, PropTypes} from "common/collections-mui"
 
 type Props = {
     todolist: TodolistDomainType
@@ -19,8 +19,7 @@ export const FilterTasksButtons: FC<Props> = ({todolist}) => {
         return (
             <Button
                 variant={todolist.filter === buttonFilter ? "outlined" : "text"}
-                onClick={() => onFilterButtonClickHandler(buttonFilter)}
-                color={"primary"}
+                onClick={() => changeFilterHandler(buttonFilter)}
                 // color={color}
             >
                 {text}
@@ -28,7 +27,7 @@ export const FilterTasksButtons: FC<Props> = ({todolist}) => {
         )
     }
 
-    const onFilterButtonClickHandler = useCallback(
+    const changeFilterHandler = useCallback(
         (filter: FilterValuesType) =>
             changeTodolistFilter({
                 filter,

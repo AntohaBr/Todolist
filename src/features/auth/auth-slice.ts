@@ -48,7 +48,6 @@ const slice = createSlice({
 })
 
 export const authSlice = slice.reducer
-export const authActions = slice.actions
 export const authThunks = {
   login,
   logout,
