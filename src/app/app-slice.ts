@@ -6,18 +6,14 @@ import {ResultCode} from "common/enums"
 const initializeApp = createAppAsyncThunk<{isLoggedIn: boolean}, undefined>(
   "app/initializeApp",
   async (_, thunkAPI) => {
-    const {dispatch, rejectWithValue} = thunkAPI
-    return thunkTryCatch(thunkAPI, async () => {
+    const {rejectWithValue} = thunkAPI
       const res = await authApi.me()
       if (res.data.resultCode === ResultCode.Success) {
         return {isLoggedIn: true}
       } else {
-        return rejectWithValue(null)
+          return rejectWithValue({data: res.data, showGlobalError: false})
       }
-    }).finally(() => {
-      dispatch(appActions.setAppInitialized({isInitialized: true}))
-    })
-  },
+  }
 )
 
 const slice = createSlice({
