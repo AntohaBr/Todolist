@@ -1,28 +1,22 @@
-import React, {useCallback, useEffect} from "react"
-import "app/app.css"
-import {ErrorSnackBar} from "common/components/error-snack-bar/error-snack-bar"
-import {useSelector} from "react-redux"
-import {Route, Routes} from "react-router-dom"
-import {selectIsInitialized, selectStatus} from "app/app-selectors"
-import {AppBar, Button, CircularProgress, Container, LinearProgress, Toolbar, Typography} from "@mui/material"
-import {authThunks} from "features/auth/auth-slice"
-import {TodolistsList} from "features/todolists-list/todolists-list"
-import {Login} from "features/auth/Login"
-import {appThunk} from "app/app-slice"
-import {selectIsLoggedIn} from "features/auth/auth-selectors"
-import {useActions} from "common/hooks"
+import React, { FC, useEffect } from 'react'
+import 'app/app.css'
+import { ErrorSnackBar } from 'common/components'
+import { useSelector } from 'react-redux'
+import { selectIsInitialized } from 'app/app-selectors'
+import { appThunk } from 'app/app-slice'
+import { useActions } from 'common/hooks'
+import { PagesRoutes } from 'app/routes'
+import { Header } from 'app/header'
+import { CircularProgress } from 'common/collections-mui'
 
-type PropsType = {
+type Props = {
   demo?: boolean
 }
 
-export const App = ({demo = false}: PropsType) => {
-  const status = useSelector(selectStatus)
+export const App: FC<Props> = ({ demo }) => {
   const isInitialized = useSelector(selectIsInitialized)
-  const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  const {logout} = useActions(authThunks)
-  const {initializeApp} = useActions(appThunk)
+  const { initializeApp } = useActions(appThunk)
 
   useEffect(() => {
     if (!demo) {
@@ -30,13 +24,9 @@ export const App = ({demo = false}: PropsType) => {
     }
   }, [])
 
-  const logoutHandler = useCallback(() => {
-    logout()
-  }, [])
-
   if (!isInitialized) {
     return (
-      <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
+      <div style={{ position: 'fixed', top: '30%', textAlign: 'center', width: '100%' }}>
         <CircularProgress />
       </div>
     )
@@ -45,23 +35,8 @@ export const App = ({demo = false}: PropsType) => {
   return (
     <div className="App">
       <ErrorSnackBar />
-      <AppBar position="static">
-        <Toolbar className="toolbar">
-          <Typography variant="h6">Todolist</Typography>
-          {isLoggedIn && (
-            <Button color="inherit" onClick={logoutHandler}>
-              Log out
-            </Button>
-          )}
-        </Toolbar>
-        {status === "loading" && <LinearProgress />}
-      </AppBar>
-      <Container fixed>
-        <Routes>
-          <Route path={"/"} element={<TodolistsList demo={demo} />} />
-          <Route path={"/login"} element={<Login />} />
-        </Routes>
-      </Container>
+      <Header />
+      <PagesRoutes />
     </div>
   )
 }

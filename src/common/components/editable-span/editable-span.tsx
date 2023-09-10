@@ -1,12 +1,12 @@
-import React, {ChangeEvent, FC, memo, useState} from "react"
-import {TextField} from "common/collections-mui"
+import React, { ChangeEvent, FC, memo, useState } from 'react'
+import { TextField } from 'common/collections-mui'
 
 type Props = {
   value: string
   onChange: (newValue: string) => void
 }
 
-export const EditableSpan: FC<Props> = memo(({value, onChange}) => {
+export const EditableSpan: FC<Props> = memo(({ value, onChange }) => {
   let [editMode, setEditMode] = useState(false)
   let [title, setTitle] = useState(value)
 

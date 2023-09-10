@@ -1,1 +1,1 @@
-export * from "common/utils/create-async-thunk"
+export * from 'common/utils/create-async-thunk'

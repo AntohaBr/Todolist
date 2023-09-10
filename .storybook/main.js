@@ -1,11 +1,11 @@
 module.exports = {
-  stories: ["../src/**/*.stories.tsx"],
+  stories: ['../src/**/*.stories.tsx'],
   addons: [
-    "@storybook/preset-create-react-appActions",
-    "@storybook/addon-actions",
-    "@storybook/addon-links",
+    '@storybook/preset-create-react-appActions',
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
     {
-      name: "@storybook/addon-storysource",
+      name: '@storybook/addon-storysource',
       options: {
         rule: {
           test: [/\.stories\.tsx?$/],
@@ -14,7 +14,7 @@ module.exports = {
           prettierConfig: {
             printWidth: 80,
             singleQuote: false,
-            options: {parser: "typescript"},
+            options: { parser: 'typescript' },
           },
         },
       },

@@ -4,6 +4,12 @@ export const ResultCode = {
   Captcha: 10,
 } as const
 
+export const PATH = {
+  TodolistsList: '/',
+  Login: '/login',
+  Error404: '/error404',
+}
+
 export enum TaskStatuses {
   New = 0,
   InProgress = 1,

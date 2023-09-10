@@ -1,29 +1,29 @@
-import React, {ChangeEvent, FC, KeyboardEvent, memo, useState} from "react"
-import {RejectValueType} from "common/utils"
-import {AddBox, IconButton, TextField} from "common/collections-mui"
+import React, { ChangeEvent, FC, KeyboardEvent, memo, useState } from 'react'
+import { RejectValueType } from 'common/utils'
+import { AddBox, IconButton, TextField } from 'common/collections-mui'
 
 type Props = {
   addItem: (title: string) => Promise<unknown>
   disabled?: boolean
 }
-export const AddItemForm: FC<Props> = memo(({addItem, disabled = false}) => {
-  const [title, setTitle] = useState("")
+export const AddItemForm: FC<Props> = memo(({ addItem, disabled = false }) => {
+  const [title, setTitle] = useState('')
   const [error, setError] = useState<string | null>(null)
 
   const addItemHandler = () => {
-    if (title.trim() !== "") {
+    if (title.trim() !== '') {
       addItem(title)
         .then(() => {
-          setTitle("")
+          setTitle('')
         })
         .catch((err: RejectValueType) => {
           if (err.data) {
             const messages = err.data.messages
-            setError(messages.length ? messages[0] : "Some error occurred")
+            setError(messages.length ? messages[0] : 'Some error occurred')
           }
         })
     } else {
-      setError("Title is required")
+      setError('Title is required')
     }
   }
 
@@ -52,7 +52,7 @@ export const AddItemForm: FC<Props> = memo(({addItem, disabled = false}) => {
         label="Title"
         helperText={error}
       />
-      <IconButton color="primary" onClick={addItemHandler} disabled={disabled} style={{marginLeft: "5px"}}>
+      <IconButton color="primary" onClick={addItemHandler} disabled={disabled} style={{ marginLeft: '5px' }}>
         <AddBox />
       </IconButton>
     </div>

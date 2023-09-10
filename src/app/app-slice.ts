@@ -1,33 +1,30 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {authApi} from "features/auth/api"
-import {createAppAsyncThunk} from "common/utils"
-import {ResultCode} from "common/enums"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { authApi } from 'features/auth/api'
+import { createAppAsyncThunk } from 'common/utils'
+import { ResultCode } from 'common/enums'
 
-const initializeApp = createAppAsyncThunk<{isLoggedIn: boolean}, undefined>(
-  "app/initializeApp",
-  async (_, thunkAPI) => {
-    const {rejectWithValue} = thunkAPI
-      const res = await authApi.me()
-      if (res.data.resultCode === ResultCode.Success) {
-        return {isLoggedIn: true}
-      } else {
-          return rejectWithValue({data: res.data, showGlobalError: false})
-      }
+const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>('app/initializeApp', async (_, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI
+  const res = await authApi.me()
+  if (res.data.resultCode === ResultCode.Success) {
+    return { isLoggedIn: true }
+  } else {
+    return rejectWithValue({ data: res.data, showGlobalError: false })
   }
-)
+})
 
 const slice = createSlice({
-  name: "app",
+  name: 'app',
   initialState: {
-    status: "idle" as RequestStatusType,
+    status: 'idle' as RequestStatusType,
     error: null as string | null,
     isInitialized: false,
   },
   reducers: {
-    setAppError: (state, action: PayloadAction<{error: string | null}>) => {
+    setAppError: (state, action: PayloadAction<{ error: string | null }>) => {
       state.error = action.payload.error
     },
-    setAppStatus: (state, action: PayloadAction<{status: RequestStatusType}>) => {
+    setAppStatus: (state, action: PayloadAction<{ status: RequestStatusType }>) => {
       state.status = action.payload.status
     },
   },
@@ -37,29 +34,29 @@ const slice = createSlice({
         state.isInitialized = true
       })
       .addMatcher(
-        (action) => action.type.endsWith("/pending"),
+        (action) => action.type.endsWith('/pending'),
         (state) => {
-          state.status = "loading"
+          state.status = 'loading'
         },
       )
       .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
+        (action) => action.type.endsWith('/rejected'),
         (state, action) => {
-          const {payload, error} = action
+          const { payload, error } = action
           if (payload) {
             if (payload.showGlobalError) {
-              state.error = payload.data.messages.length ? payload.data.messages[0] : "Some error occurred"
+              state.error = payload.data.messages.length ? payload.data.messages[0] : 'Some error occurred'
             }
           } else {
-            state.error = error.message ? error.message : "Some error occurred"
+            state.error = error.message ? error.message : 'Some error occurred'
           }
-          state.status = "failed"
+          state.status = 'failed'
         },
       )
       .addMatcher(
-        (action) => action.type.endsWith("/fulfilled"),
+        (action) => action.type.endsWith('/fulfilled'),
         (state) => {
-          state.status = "succeeded"
+          state.status = 'succeeded'
         },
       )
   },
@@ -67,7 +64,7 @@ const slice = createSlice({
 
 export const appSlice = slice.reducer
 export const appActions = slice.actions
-export const appThunk = {initializeApp}
+export const appThunk = { initializeApp }
 
-export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed"
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type AppInitialStateType = ReturnType<typeof slice.getInitialState>

@@ -1,4 +1,4 @@
-import {TaskPriorities, TaskStatuses} from "common/enums"
+import { TaskPriorities, TaskStatuses } from 'common/enums'
 
 export type GetTasksResponse = {
   error: string | null

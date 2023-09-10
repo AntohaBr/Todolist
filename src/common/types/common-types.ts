@@ -1,4 +1,4 @@
-import {store} from "app/store"
+import { store } from 'app/store'
 
 export type BaseResponseType<D = {}> = {
   resultCode: number
