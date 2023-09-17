@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { authApi } from 'features/auth/api'
 import { createAppAsyncThunk } from 'common/utils'
 import { ResultCode } from 'common/enums'
+import {appApi} from "app/api/";
 
 const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>('app/initializeApp', async (_, thunkAPI) => {
   const { rejectWithValue } = thunkAPI
-  const res = await authApi.me()
+  const res = await appApi.me()
   if (res.data.resultCode === ResultCode.Success) {
     return { isLoggedIn: true }
   } else {

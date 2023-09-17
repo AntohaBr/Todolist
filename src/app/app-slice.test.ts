@@ -21,3 +21,5 @@ test('correct status should be set', () => {
 
   expect(endState.status).toBe('loading')
 })
+
+

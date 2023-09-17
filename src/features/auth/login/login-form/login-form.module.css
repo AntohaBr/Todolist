@@ -1,6 +1,9 @@
 .captcha_block {
     margin-top: 15px;
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .captcha_img {
@@ -9,7 +12,9 @@
 }
 
 .captcha_input {
-    /*@include text($textFontFamily, 1rem, 400);*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
     border: none;
     padding: 5px 10px;
     width: 100%;

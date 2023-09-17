@@ -8,8 +8,5 @@ export const authApi = {
   },
   logout() {
     return commonApi.delete<BaseResponseType<{ userId?: number }>>('auth/login')
-  },
-  me() {
-    return commonApi.get<BaseResponseType<{ id: number; email: string; login: string }>>('auth/me')
-  },
+  }
 }

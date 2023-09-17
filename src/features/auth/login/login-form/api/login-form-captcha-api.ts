@@ -1,4 +1,4 @@
-import {GetCaptchaURLResponseType} from "features/auth/login/captcha/api/captcha-api-type";
+import {GetCaptchaURLResponseType} from "features/auth/login/login-form/api/login-form-captcha-api-types";
 import {commonApi} from "common/api";
 
 export const securityAPI = {

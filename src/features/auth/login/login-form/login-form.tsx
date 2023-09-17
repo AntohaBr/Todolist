@@ -4,10 +4,15 @@ import {FormikHelpers, useFormik} from 'formik'
 import {LoginParamsType} from 'features/auth/api'
 import {BaseResponseType} from 'common/types'
 import {useActions} from 'common/hooks'
-import {authThunks} from 'features/auth/auth-slice'
+import {authThunks} from 'features/auth/model/auth-slice'
 import {FormValuesType} from 'features/auth/login/login-form/login-form-types'
+import s from "features/auth/login/login-form/login-form.module.css";
+import {useSelector} from "react-redux";
+import {selectCaptchaUrl} from "features/auth/model/auth-selectors";
 
 export const LoginForm: FC = () => {
+    const captchaUrl = useSelector(selectCaptchaUrl)
+
     const {login} = useActions(authThunks)
 
     const formik = useFormik({
@@ -25,13 +30,20 @@ export const LoginForm: FC = () => {
                 errors.password = 'Must be 3 characters or more'
             }
 
+            // if (!formik.values.captcha) {
+            //     errors.captcha = '11111111111111111111111111111111'
+            // } else if (formik.values.captcha !== captchaUrl) {
+            //     errors.captcha = 'Invalid'
+            // }
+
             return errors
         },
         initialValues: {
             email: '',
             password: '',
             rememberMe: false,
-        },
+            captcha: ''
+        } as LoginParamsType,
         onSubmit: (values, formikHelpers: FormikHelpers<LoginParamsType>) => {
             login(values)
                 .unwrap()
@@ -56,10 +68,24 @@ export const LoginForm: FC = () => {
                     label={'Remember me'}
                     control={<Checkbox {...formik.getFieldProps('rememberMe')} checked={formik.values.rememberMe}/>}
                 />
+                {captchaUrl &&
+                    <div className={s.captcha_block}>
+                        <img src={captchaUrl} alt="captcha" className={s.captcha_img}/>
+                        <input
+                            className={s.captcha_input}
+                            id='Symbols from image'
+                            name='captcha'
+                            onChange={formik.handleChange}
+                            value={formik.values.captcha}
+                        />
+                        {/*{formik.touched.captcha && formik.errors.captcha ?*/}
+                        {/*    <div style={{color: 'red'}}>{formik.errors.captcha}</div> : null}*/}
+                    </div>
+                }
                 <Button
                     type={'submit'}
                     variant={'contained'}
-                    disabled={!(formik.isValid && formik.dirty)}
+                    // disabled={!(formik.isValid && formik.dirty)}
                     color={'primary'}
                     style={{marginTop: 30}}
                 >

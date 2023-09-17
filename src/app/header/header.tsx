@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react'
 import { useSelector } from 'react-redux'
-import { selectIsLoggedIn } from 'features/auth/auth-selectors'
+import { selectIsLoggedIn } from 'features/auth/model/auth-selectors'
 import { useActions } from 'common/hooks'
-import { authThunks } from 'features/auth/auth-slice'
+import { authThunks } from 'features/auth/model/auth-slice'
 import { selectStatus } from 'app/app-selectors'
 import { AppBar, Button, LinearProgress, Toolbar, Typography } from 'common/collections-mui'
 
