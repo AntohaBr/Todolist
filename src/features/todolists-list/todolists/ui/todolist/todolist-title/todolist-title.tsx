@@ -1,5 +1,5 @@
 import s from 'features/todolists-list/todolists/ui/todolist/todolist.module.css'
-import { EditableSpan } from 'common/components'
+import { EditableSpan } from 'shared/ui'
 import React, { FC, useCallback } from 'react'
 import { TodolistDomainType, todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
 import { useActions } from 'common/hooks'

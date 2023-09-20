@@ -1,5 +1,5 @@
 import { BaseResponseType } from 'common/types'
-import { commonApi } from 'common/api'
+import { commonApi } from 'shared/api'
 import { LoginParamsType } from 'features/auth/api'
 
 export const authApi = {

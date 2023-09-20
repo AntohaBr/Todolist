@@ -1,6 +1,6 @@
 import { todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
 import { tasksSlice, TasksStateType, tasksThunks } from 'features/todolists-list/tasks/model/tasks-slice'
-import { TaskPriorities, TaskStatuses } from 'common/enums'
+import {TaskPrioritiesEnum, TaskStatusesEnum} from "shared/config";
 
 let startState: TasksStateType = {}
 beforeEach(() => {
@@ -9,76 +9,76 @@ beforeEach(() => {
       {
         id: '1',
         title: 'CSS',
-        status: TaskStatuses.New,
+        status: TaskStatusesEnum.New,
         todoListId: 'todolistId1',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
       {
         id: '2',
         title: 'JS',
-        status: TaskStatuses.Completed,
+        status: TaskStatusesEnum.Completed,
         todoListId: 'todolistId1',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
       {
         id: '3',
         title: 'React',
-        status: TaskStatuses.New,
+        status: TaskStatusesEnum.New,
         todoListId: 'todolistId1',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
     ],
     todolistId2: [
       {
         id: '1',
         title: 'bread',
-        status: TaskStatuses.New,
+        status: TaskStatusesEnum.New,
         todoListId: 'todolistId2',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
       {
         id: '2',
         title: 'milk',
-        status: TaskStatuses.Completed,
+        status: TaskStatusesEnum.Completed,
         todoListId: 'todolistId2',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
       {
         id: '3',
         title: 'tea',
-        status: TaskStatuses.New,
+        status: TaskStatusesEnum.New,
         todoListId: 'todolistId2',
         description: '',
         startDate: '',
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low,
+        priority: TaskPrioritiesEnum.Low,
       },
     ],
   }
@@ -99,7 +99,7 @@ test('correct task should be added to correct array', () => {
   let task = {
     todoListId: 'todolistId2',
     title: 'juce',
-    status: TaskStatuses.New,
+    status: TaskStatusesEnum.New,
     addedDate: '',
     deadline: '',
     description: '',
@@ -119,17 +119,17 @@ test('correct task should be added to correct array', () => {
   expect(endState['todolistId2'].length).toBe(4)
   expect(endState['todolistId2'][0].id).toBeDefined()
   expect(endState['todolistId2'][0].title).toBe('juce')
-  expect(endState['todolistId2'][0].status).toBe(TaskStatuses.New)
+  expect(endState['todolistId2'][0].status).toBe(TaskStatusesEnum.New)
 })
 
 test('status of specified task should be changed', () => {
-  let updateModel = { taskId: '2', domainModel: { status: TaskStatuses.New }, todolistId: 'todolistId2' }
+  let updateModel = { taskId: '2', domainModel: { status: TaskStatusesEnum.New }, todolistId: 'todolistId2' }
   const action = tasksThunks.updateTask.fulfilled(updateModel, 'requestId', updateModel)
 
   const endState = tasksSlice(startState, action)
 
-  expect(endState['todolistId1'][1].status).toBe(TaskStatuses.Completed)
-  expect(endState['todolistId2'][1].status).toBe(TaskStatuses.New)
+  expect(endState['todolistId1'][1].status).toBe(TaskStatusesEnum.Completed)
+  expect(endState['todolistId2'][1].status).toBe(TaskStatusesEnum.New)
 })
 
 test('title of specified task should be changed', () => {

@@ -1,0 +1,1 @@
+export {ErrorSnackBar} from 'shared/ui/error-snack-bar/error-snack-bar'

@@ -1,5 +1,5 @@
 import { TodolistType, UpdateTodolistTitleArgType } from 'features/todolists-list/todolists/api'
-import { commonApi } from 'common/api'
+import { commonApi } from 'shared/api'
 import { BaseResponseType } from 'common/types'
 
 export const todolistsApi = {

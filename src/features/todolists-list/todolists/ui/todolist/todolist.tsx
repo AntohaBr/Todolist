@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback, useEffect } from 'react'
-import { AddItemForm } from 'common/components'
+import { AddItemForm } from 'shared/ui'
 import { TodolistDomainType } from 'features/todolists-list/todolists/model/todolists-slice'
 import { TaskType } from 'features/todolists-list/tasks/api'
 import { FilterTasksButtons } from 'features/todolists-list/todolists/ui/todolist/filter-tasks-buttons/filter-tasks-buttons'

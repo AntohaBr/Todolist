@@ -1,4 +1,5 @@
-import { TaskPriorities, TaskStatuses } from 'common/enums'
+import {TaskPrioritiesEnum, TaskStatusesEnum} from "shared/config";
+
 
 export type GetTasksResponse = {
   error: string | null
@@ -8,8 +9,8 @@ export type GetTasksResponse = {
 export type TaskType = {
   description: string
   title: string
-  status: TaskStatuses
-  priority: TaskPriorities
+  status: TaskStatusesEnum
+  priority: TaskPrioritiesEnum
   startDate: string
   deadline: string
   id: string
@@ -20,8 +21,8 @@ export type TaskType = {
 export type UpdateTaskModelType = {
   title: string
   description: string
-  status: TaskStatuses
-  priority: TaskPriorities
+  status: TaskStatusesEnum
+  priority: TaskPrioritiesEnum
   startDate: string
   deadline: string
 }
@@ -36,8 +37,8 @@ export type RemoveTaskArgType = {
 export type UpdateDomainTaskModelType = {
   title?: string
   description?: string
-  status?: TaskStatuses
-  priority?: TaskPriorities
+  status?: TaskStatusesEnum
+  priority?: TaskPrioritiesEnum
   startDate?: string
   deadline?: string
 }

@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { AddItemForm } from 'common/components'
 import { Todolist } from 'features/todolists-list/todolists/ui/todolist/todolist'
 import { Navigate } from 'react-router-dom'
 import { selectIsLoggedIn } from 'features/auth/model/auth-selectors'
@@ -9,7 +8,8 @@ import { selectTasks } from 'features/todolists-list/tasks/model/task.selectors'
 import { selectTodolists } from 'features/todolists-list/todolists/model/todolists-selectors'
 import { todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
 import { useActions } from 'common/hooks'
-import { PATH } from 'common/enums'
+import {AddItemForm} from "shared/ui";
+import {paths} from "shared/routing";
 
 type Props = {
   demo?: boolean
@@ -34,7 +34,7 @@ export const TodolistsList: FC<Props> = ({ demo = false }) => {
   }, [])
 
   if (!isLoggedIn) {
-    return <Navigate to={PATH.Login} />
+    return <Navigate to={paths.login} />
   }
 
   return (

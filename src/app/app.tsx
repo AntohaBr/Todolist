@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import 'app/app.css'
-import { ErrorSnackBar } from 'common/components'
+import { ErrorSnackBar } from 'shared/ui'
 import { useSelector } from 'react-redux'
 import { selectIsInitialized } from 'app/app-selectors'
 import { appThunk } from 'app/app-slice'

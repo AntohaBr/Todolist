@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, memo, useCallback } from 'react'
-import { EditableSpan } from 'common/components'
+import { EditableSpan } from 'shared/ui'
 import s from 'features/todolists-list/todolists/ui/todolist/tasks/task/task.module.css'
 import { Delete, Checkbox, IconButton } from 'common/collections-mui'
-import { TaskStatuses } from 'common/enums'
 import { TaskType } from 'features/todolists-list/tasks/api'
 import { tasksThunks } from 'features/todolists-list/tasks/model/tasks-slice'
 import { useActions } from 'common/hooks'
+import {TaskStatusesEnum} from "shared/config";
 
 type Props = {
   task: TaskType
@@ -21,7 +21,7 @@ export const Task: FC<Props> = memo(({ task, todolistId }) => {
   const onChangeTaskStatus = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       let newIsDoneValue = e.currentTarget.checked
-      const status = newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New
+      const status = newIsDoneValue ? TaskStatusesEnum.Completed : TaskStatusesEnum.New
       updateTask({ taskId, domainModel: { status }, todolistId })
     },
     [taskId, todolistId],
@@ -39,10 +39,10 @@ export const Task: FC<Props> = memo(({ task, todolistId }) => {
   )
 
   return (
-    <div key={taskId} className={`${task.status === TaskStatuses.Completed ? s.isDone : ''} ${s.taskContainer}`}>
+    <div key={taskId} className={`${task.status === TaskStatusesEnum.Completed ? s.isDone : ''} ${s.taskContainer}`}>
       <div>
         <Checkbox
-          checked={task.status === TaskStatuses.Completed}
+          checked={task.status === TaskStatusesEnum.Completed}
           color="primary"
           onChange={onChangeTaskStatus}
           style={{ padding: '10px 5px 0px 0px' }}

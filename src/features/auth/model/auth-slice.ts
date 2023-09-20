@@ -1,16 +1,16 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {authApi, LoginParamsType} from 'features/auth/api'
 import {createAppAsyncThunk} from 'common/utils'
-import {ResultCode} from 'common/enums'
 import {clearTasksAndTodolists} from 'common/actions'
 import {securityAPI} from "features/auth/login/login-form/api/login-form-captcha-api"
+import {ResultCodeEnum} from "shared/config";
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>('auth/login', async (arg, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI
         const res = await authApi.login(arg)
-    if (res.data.resultCode === ResultCode.Success) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         return {isLoggedIn: true}
-    } else if (res.data.resultCode === ResultCode.Captcha) {
+    } else if (res.data.resultCode === ResultCodeEnum.Captcha) {
         dispatch(authThunks.getCaptcha())
         if (!res.data.fieldsErrors.length) {
             return  {isLoggedIn: false}
@@ -26,7 +26,7 @@ const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>('aut
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>('auth/logout', async (_, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI
     const res = await authApi.logout()
-    if (res.data.resultCode === ResultCode.Success) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
         dispatch(clearTasksAndTodolists())
         return {isLoggedIn: false}
     } else {

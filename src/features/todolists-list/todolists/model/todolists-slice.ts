@@ -1,8 +1,8 @@
 import { todolistsApi, TodolistType, UpdateTodolistTitleArgType } from 'features/todolists-list/todolists/api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils'
-import { ResultCode } from 'common/enums'
 import { RequestStatusType } from 'app/app-slice'
+import {ResultCodeEnum} from "shared/config";
 
 const fetchTodolists = createAppAsyncThunk<{ todolists: TodolistType[] }, undefined>('todolists/fetchTodolists', async (_, thunkAPI) => {
   const res = await todolistsApi.getTodolists()
@@ -13,7 +13,7 @@ const removeTodolist = createAppAsyncThunk<{ id: string }, string>('todolists/re
   const { dispatch, rejectWithValue } = thunkAPI
   dispatch(todolistsActions.changeTodolistEntityStatus({ id, entityStatus: 'loading' }))
   const res = await todolistsApi.deleteTodolist(id)
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return { id }
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: true })
@@ -23,7 +23,7 @@ const removeTodolist = createAppAsyncThunk<{ id: string }, string>('todolists/re
 const addTodolist = createAppAsyncThunk<{ todolist: TodolistType }, string>('todolists/addTodolist', async (title, thunkAPI) => {
   const { rejectWithValue } = thunkAPI
   const res = await todolistsApi.createTodolist(title)
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return { todolist: res.data.data.item }
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: false })
@@ -35,7 +35,7 @@ const changeTodolistTitle = createAppAsyncThunk<UpdateTodolistTitleArgType, Upda
   async (arg, thunkAPI) => {
     const { rejectWithValue } = thunkAPI
     const res = await todolistsApi.updateTodolist(arg)
-    if (res.data.resultCode === ResultCode.Success) {
+    if (res.data.resultCode === ResultCodeEnum.Success) {
       return arg
     } else {
       return rejectWithValue({ data: res.data, showGlobalError: false })

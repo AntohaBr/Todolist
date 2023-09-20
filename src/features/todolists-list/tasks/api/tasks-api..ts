@@ -1,4 +1,4 @@
-import { commonApi } from 'common/api'
+import { commonApi } from 'shared/api'
 import { BaseResponseType } from 'common/types'
 import {
   AddTaskArgType,

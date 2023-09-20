@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils'
-import { ResultCode } from 'common/enums'
 import {
   tasksApi,
   AddTaskArgType,
@@ -11,6 +10,7 @@ import {
 } from 'features/todolists-list/tasks/api'
 import { todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
 import { appActions } from 'app/app-slice'
+import {ResultCodeEnum} from "shared/config";
 
 const initialState: TasksStateType = {}
 
@@ -25,7 +25,7 @@ const fetchTasks = createAppAsyncThunk<{ tasks: TaskType[]; todolistId: string }
 const removeTask = createAppAsyncThunk<RemoveTaskArgType, RemoveTaskArgType>('tasks/removeTask', async (arg, thunkAPI) => {
   const { rejectWithValue } = thunkAPI
   const res = await tasksApi.deleteTask(arg)
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return arg
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: true })
@@ -35,7 +35,7 @@ const removeTask = createAppAsyncThunk<RemoveTaskArgType, RemoveTaskArgType>('ta
 const addTask = createAppAsyncThunk<{ task: TaskType }, AddTaskArgType>('tasks/addTask', async (arg, thunkAPI) => {
   const { rejectWithValue } = thunkAPI
   const res = await tasksApi.createTask(arg)
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return { task: res.data.data.item }
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: false })
@@ -62,7 +62,7 @@ const updateTask = createAppAsyncThunk<UpdateTaskArgType, UpdateTaskArgType>('ta
   }
 
   const res = await tasksApi.updateTask(arg, apiModel)
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return arg
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: true })

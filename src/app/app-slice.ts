@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils'
-import { ResultCode } from 'common/enums'
 import {appApi} from "app/api/";
+import {ResultCodeEnum} from "shared/config";
 
 const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>('app/initializeApp', async (_, thunkAPI) => {
   const { rejectWithValue } = thunkAPI
   const res = await appApi.me()
-  if (res.data.resultCode === ResultCode.Success) {
+  if (res.data.resultCode === ResultCodeEnum.Success) {
     return { isLoggedIn: true }
   } else {
     return rejectWithValue({ data: res.data, showGlobalError: false })
