@@ -2,8 +2,8 @@ import s from 'features/todolists-list/todolists/ui/todolist/todolist.module.css
 import { EditableSpan } from 'shared/ui'
 import React, { FC, useCallback } from 'react'
 import { TodolistDomainType, todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
-import { useActions } from 'common/hooks'
-import { Delete, IconButton } from 'common/collections-mui'
+import { useActions } from 'shared/lib/hooks/use-actions'
+import { Delete, IconButton } from 'shared/ui/collections-mui'
 
 type Props = {
   todolist: TodolistDomainType

@@ -1,8 +1,8 @@
 import { BaseResponseType } from 'common/types'
-import { commonApi } from 'shared/api'
+import { commonInstance } from 'shared/api'
 
 export const appApi = {
     me() {
-        return commonApi.get<BaseResponseType<{ id: number; email: string; login: string }>>('auth/me')
+        return commonInstance.get<BaseResponseType<{ id: number; email: string; login: string }>>('auth/me')
     }
 }

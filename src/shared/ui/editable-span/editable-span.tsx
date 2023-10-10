@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, memo, useState } from 'react'
-import { TextField } from 'common/collections-mui'
+import { TextField } from 'shared/ui'
 
 type Props = {
   value: string

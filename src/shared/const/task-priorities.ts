@@ -1,4 +1,4 @@
-export const enum TaskPrioritiesEnum {
+export enum TaskPrioritiesEnum {
     Low = 0,
     Middle = 1,
     Hi = 2,

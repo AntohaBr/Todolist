@@ -1,1 +1,1 @@
-export { commonApi } from 'shared/api/common-api'
+export {commonInstance} from 'shared/api/common-instance'

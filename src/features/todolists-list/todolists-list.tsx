@@ -7,16 +7,17 @@ import s from 'features/todolists-list/todolists-list.module.css'
 import { selectTasks } from 'features/todolists-list/tasks/model/task.selectors'
 import { selectTodolists } from 'features/todolists-list/todolists/model/todolists-selectors'
 import { todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
-import { useActions } from 'common/hooks'
+import { useActions } from 'shared/lib/hooks/use-actions'
 import {AddItemForm} from "shared/ui";
-import {paths} from "shared/routing";
+import {router} from "shared/const";
+import {useAppSelector} from "shared/lib/hooks";
 
 type Props = {
   demo?: boolean
 }
 
 export const TodolistsList: FC<Props> = ({ demo = false }) => {
-  const todolists = useSelector(selectTodolists)
+  const todolists = useAppSelector(selectTodolists)
   const tasks = useSelector(selectTasks)
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
@@ -34,7 +35,7 @@ export const TodolistsList: FC<Props> = ({ demo = false }) => {
   }, [])
 
   if (!isLoggedIn) {
-    return <Navigate to={paths.login} />
+    return <Navigate to={router.login} />
   }
 
   return (

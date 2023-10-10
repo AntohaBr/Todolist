@@ -1,12 +1,12 @@
 import { BaseResponseType } from 'common/types'
-import { commonApi } from 'shared/api'
+import { commonInstance } from 'shared/api'
 import { LoginParamsType } from 'features/auth/api'
 
 export const authApi = {
   login(data: LoginParamsType) {
-    return commonApi.post<BaseResponseType<{ userId?: number }>>('auth/login', data)
+    return commonInstance.post<BaseResponseType<{ userId?: number }>>('auth/login', data)
   },
   logout() {
-    return commonApi.delete<BaseResponseType<{ userId?: number }>>('auth/login')
+    return commonInstance.delete<BaseResponseType<{ userId?: number }>>('auth/login')
   }
 }

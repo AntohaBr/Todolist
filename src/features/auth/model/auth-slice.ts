@@ -3,7 +3,7 @@ import {authApi, LoginParamsType} from 'features/auth/api'
 import {createAppAsyncThunk} from 'common/utils'
 import {clearTasksAndTodolists} from 'common/actions'
 import {securityAPI} from "features/auth/login/login-form/api/login-form-captcha-api"
-import {ResultCodeEnum} from "shared/config";
+import {ResultCodeEnum} from "shared/const";
 
 const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>('auth/login', async (arg, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI

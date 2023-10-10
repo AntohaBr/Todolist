@@ -2,7 +2,7 @@ import { todolistsApi, TodolistType, UpdateTodolistTitleArgType } from 'features
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils'
 import { RequestStatusType } from 'app/app-slice'
-import {ResultCodeEnum} from "shared/config";
+import {ResultCodeEnum} from "shared/const";
 
 const fetchTodolists = createAppAsyncThunk<{ todolists: TodolistType[] }, undefined>('todolists/fetchTodolists', async (_, thunkAPI) => {
   const res = await todolistsApi.getTodolists()

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, memo, useState } from 'react'
 import { RejectValueType } from 'common/utils'
-import { AddBox, IconButton, TextField } from 'common/collections-mui'
+import { AddBox, IconButton, TextField } from 'shared/ui'
 
 type Props = {
   addItem: (title: string) => Promise<unknown>

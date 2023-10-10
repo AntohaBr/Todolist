@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react'
 import { FilterValuesType, TodolistDomainType, todolistsActions } from 'features/todolists-list/todolists/model/todolists-slice'
-import { useActions } from 'common/hooks'
-import { Button, PropTypes } from 'common/collections-mui'
+import { useActions } from 'shared/lib/hooks/use-actions'
+import { Button, PropTypes } from 'shared/ui/collections-mui'
 
 type Props = {
   todolist: TodolistDomainType

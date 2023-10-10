@@ -1,4 +1,4 @@
-import {FormLabel} from "common/collections-mui";
+import {FormLabel} from "shared/ui/collections-mui";
 import s from "features/auth/login/login-info/login-info.module.css";
 import React from "react";
 

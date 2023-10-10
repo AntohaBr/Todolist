@@ -1,4 +1,4 @@
-export const enum TaskStatusesEnum {
+export enum TaskStatusesEnum {
     New = 0,
     InProgress = 1,
     Completed = 2,

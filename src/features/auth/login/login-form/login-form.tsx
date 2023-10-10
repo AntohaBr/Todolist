@@ -1,9 +1,9 @@
-import {Button, Checkbox, FormControlLabel, FormGroup, TextField} from 'common/collections-mui'
+import {Button, Checkbox, FormControlLabel, FormGroup, TextField} from 'shared/ui/collections-mui'
 import React, {FC} from 'react'
 import {FormikHelpers, useFormik} from 'formik'
 import {LoginParamsType} from 'features/auth/api'
 import {BaseResponseType} from 'common/types'
-import {useActions} from 'common/hooks'
+import {useActions} from 'shared/lib/hooks/use-actions'
 import {authThunks} from 'features/auth/model/auth-slice'
 import {FormValuesType} from 'features/auth/login/login-form/login-form-types'
 import s from "features/auth/login/login-form/login-form.module.css";

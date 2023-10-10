@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from 'common/utils'
 import {appApi} from "app/api/";
-import {ResultCodeEnum} from "shared/config";
+import {ResultCodeEnum} from "shared/const";
 
 const initializeApp = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>('app/initializeApp', async (_, thunkAPI) => {
   const { rejectWithValue } = thunkAPI

@@ -1,9 +1,9 @@
 import React, {FC, memo} from 'react'
 import {useSelector} from 'react-redux'
 import {selectError} from 'app/app-selectors'
-import {useActions} from 'common/hooks'
+import {useActions} from 'shared/lib/hooks/use-actions'
 import {appActions} from 'app/app-slice'
-import {Snackbar} from 'common/collections-mui'
+import {Snackbar} from 'shared/ui'
 import {Alert} from "shared/ui/error-snack-bar/ui";
 
 export const ErrorSnackBar: FC = memo(() => {

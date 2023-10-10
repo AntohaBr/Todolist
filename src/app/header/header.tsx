@@ -1,10 +1,10 @@
 import React, { FC, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { selectIsLoggedIn } from 'features/auth/model/auth-selectors'
-import { useActions } from 'common/hooks'
+import { useActions } from 'shared/lib/hooks/use-actions'
 import { authThunks } from 'features/auth/model/auth-slice'
 import { selectStatus } from 'app/app-selectors'
-import { AppBar, Button, LinearProgress, Toolbar, Typography } from 'common/collections-mui'
+import { AppBar, Button, LinearProgress, Toolbar, Typography } from 'shared/ui/collections-mui'
 
 export const Header: FC = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)

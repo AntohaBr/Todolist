@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, memo, useCallback } from 'react'
 import { EditableSpan } from 'shared/ui'
-import s from 'features/todolists-list/todolists/ui/todolist/tasks/task/task.module.css'
-import { Delete, Checkbox, IconButton } from 'common/collections-mui'
-import { TaskType } from 'features/todolists-list/tasks/api'
+import s from 'entities/task/ui/task/task.module.css'
+import { Delete, Checkbox, IconButton } from 'shared/ui/collections-mui'
 import { tasksThunks } from 'features/todolists-list/tasks/model/tasks-slice'
-import { useActions } from 'common/hooks'
-import {TaskStatusesEnum} from "shared/config";
+import { useActions } from 'shared/lib/hooks/use-actions'
+import {TaskStatusesEnum} from "shared/const";
+import {TaskType} from "entities/task/model/types/task-type";
 
 type Props = {
   task: TaskType

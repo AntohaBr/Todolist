@@ -3,14 +3,14 @@ import { createAppAsyncThunk } from 'common/utils'
 import {
   tasksApi,
   AddTaskArgType,
-  TaskType,
   RemoveTaskArgType,
   UpdateTaskArgType,
   UpdateTaskModelType,
 } from 'features/todolists-list/tasks/api'
 import { todolistsThunks } from 'features/todolists-list/todolists/model/todolists-slice'
 import { appActions } from 'app/app-slice'
-import {ResultCodeEnum} from "shared/config";
+import {ResultCodeEnum} from "shared/const";
+import {TaskType} from "entities/task";
 
 const initialState: TasksStateType = {}
 
